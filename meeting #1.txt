@@ -1,0 +1,31 @@
+date: September 06, 2016
+meeting_type: group
+attendance: [chserafi, tsmccorm, mtiruman, adybhav]
+absent: [tm66]
+excused_absences: [
+  {ubit: tm66, reason: Was not yet enrolled in the class. Was given information at a later time.}
+  ]
+task_progress: [
+  {ubit: chserafi, progress: None},
+  {ubit: mtiruman, progress: None},
+  {ubit: adybhav, progress: None},
+  {ubit: tsmccorm, progress: None},
+  {ubit: tm66, progress: None}
+  ]
+issues: [
+  {ubit: chserafi, issue: The Leap Motion does not seem to have the capability to recognize full body motions / facial features. This could make full body signing and expressions difficult to implement.}
+  ]
+Notes:  |
+  No roles have been given to any particular member at this point, hence why no "progress" is labeled for anyone.
+  Determined that using the "Leap Motion" would be the best choice in terms of hardware.
+  Due to the use of the Leap Motion, it was determined that coding in C++ on a Linux environment would be optimal.
+  Machine learning of gestures was discussed, though members felt that it would be too ambitous. Kept as a stretch goal.
+  Stretch goal #1 - After initial funcitons were developed on the Leap Motion, convert the functionality so that only a webcam would be necessary.
+  Stretch goal #2 - Create a lexer / analyzer for the generated English such that it can be converted from raw translation into vernacular English. 
+  Stretch goal #3 - Use similar gesture recognition technology to control a desktop coputer / specific video game of our choosing.
+  Stretch goal #4 - Support for multiple languages, i.e. convert American Sign Language into Spanish / convert International Sign Language into French.
+  Stretch goal #5 - Create a mini-game that would teach unfamiliar users how to sign basic information.
+  Stretch goal #6 - Converting this software for use with mobile devices.
+  
+  
+  

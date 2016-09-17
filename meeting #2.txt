@@ -1,0 +1,24 @@
+date: September 13, 2016
+meeting_type: ta
+attendance: [chserafi, tsmccorm, mtiruman, adybhav]
+absent: [tm66]
+excused_absences: [
+  {ubit: tm66, reason: Had work, this was known before scheduling the meeting.}
+  ]
+task_progress: [
+  {ubit: chserafi, progress: Created public and private Slack channels.},
+  {ubit: mtiruman, progress: Created repository on GitHub.},
+  {ubit: adybhav, progress: None},
+  {ubit: tsmccorm, progress: Filled out group confirmation form.},
+  {ubit: tm66, progress: None}
+  ]
+issues: [
+  {}
+  ]
+Notes:  |
+  Discussed the possibility of conflicting libraries between the Leap Motion and our developing environment.
+  TA (Abhishek Kulkarni) suggested that we decide on and get familiar with one piece of hardware as soon as possible (Leap Motion confirmed).
+  Discussed what was expected of us in the YouTube video, along with ways of recording one. Determined that a seperate YouTube channel should be created for the project.
+  Discussed strategies for development, like stopping development on the Friday before a Sprint is due in order to focus on minute formatting and the YouTube video.
+  Discussed long term goals and decisions, including the possibility of transfering similar functionality to other hardware, and long term stretch goals listed in meeting #1.
+  Abhishek instructed us to set very clear roles for every memeber in the future. This will be done for greater clarity and communication.
