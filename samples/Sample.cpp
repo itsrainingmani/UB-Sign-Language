@@ -57,44 +57,55 @@ void SampleListener::onFrame(const Controller& controller) {
   // Get the most recent frame and report some basic information
  usleep(500000); // Sleep for a half second
  const Frame frame = controller.frame();
-  std::cout << "Frame id: " << frame.id()
+/*  std::cout << "Frame id: " << frame.id()
             << ", timestamp: " << frame.timestamp()
             << ", hands: " << frame.hands().count()
             << ", extended fingers: " << frame.fingers().extended().count()
             << ", tools: " << frame.tools().count()
             << ", gestures: " << frame.gestures().count() << std::endl;
-
+*/
   HandList hands = frame.hands();
   for (HandList::const_iterator hl = hands.begin(); hl != hands.end(); ++hl) {
     // Get the first hand
     const Hand hand = *hl;
     std::string handType = hand.isLeft() ? "Left hand" : "Right hand";
-    std::cout << std::string(2, ' ') << handType << ", id: " << hand.id()
-              << ", palm position: " << hand.palmPosition() << std::endl;
+//    std::cout << std::string(2, ' ') << handType << ", id: " << hand.id()
+//              << ", palm position: " << hand.palmPosition() << std::endl;
     // Get the hand's normal vector and direction
     const Vector normal = hand.palmNormal();
     const Vector direction = hand.direction();
 
     // Calculate the hand's pitch, roll, and yaw angles
-    std::cout << std::string(2, ' ') <<  "pitch: " << direction.pitch() * RAD_TO_DEG << " degrees, "
-              << "roll: " << normal.roll() * RAD_TO_DEG << " degrees, "
-              << "yaw: " << direction.yaw() * RAD_TO_DEG << " degrees" << std::endl;
+//    std::cout << std::string(2, ' ') <<  "pitch: " << direction.pitch() * RAD_TO_DEG << " degrees, "
+//              << "roll: " << normal.roll() * RAD_TO_DEG << " degrees, "
+//              << "yaw: " << direction.yaw() * RAD_TO_DEG << " degrees" << std::endl;
 
     // Get fingers
+	Vector test = Vector::zero();
     const FingerList fingers = hand.fingers();
     for (FingerList::const_iterator fl = fingers.begin(); fl != fingers.end(); ++fl) {
       const Finger finger = *fl;
 
       // Get finger bones
-      for (int b = 0; b < 4; ++b) {
+      for (int b = 3; b < 4; ++b) {
         Bone::Type boneType = static_cast<Bone::Type>(b);
         Bone bone = finger.bone(boneType);
-        std::cout << std::string(6, ' ') <<  boneNames[boneType]
-                  << " bone, start: " << bone.prevJoint()
-                  << ", end: " << bone.nextJoint()
-                  << ", direction: " << bone.direction() << std::endl;
-      }
+//        std::cout << std::string(6, ' ') <<  boneNames[boneType]
+//                  << " bone, start: " << bone.prevJoint()
+//                  << ", end: " << bone.nextJoint()
+//                  << ", direction: " << bone.direction() << std::endl;
+     test += bone.direction(); 
+	}
     }
+	test.y = test.y * -1;
+	std::cout << test.y << std::endl;
+	if(test.y >= 4.5){	
+	std::cout << "HAND IS OPEN" << std::endl;
+	}
+	if(test.y <= -2.5){
+	std::cout << "HAND IS CLOSED" << std::endl;
+	}
+	test = Vector::zero();
   }
 }
 
