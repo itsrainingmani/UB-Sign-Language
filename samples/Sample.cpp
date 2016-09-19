@@ -87,7 +87,7 @@ void SampleListener::onFrame(const Controller& controller) {
       const Finger finger = *fl;
 
       // Get finger bones
-      for (int b = 3; b < 4; ++b) {
+      for (int b = 2; b < 3; ++b) {
         Bone::Type boneType = static_cast<Bone::Type>(b);
         Bone bone = finger.bone(boneType);
 //        std::cout << std::string(6, ' ') <<  boneNames[boneType]
