@@ -97,12 +97,12 @@ void SampleListener::onFrame(const Controller& controller) {
      test += bone.direction(); 
 	}
     }
-	test.y = test.y * -1;
-	std::cout << test.y << std::endl;
-	if(test.y >= 4.5){	
+//	test.z = test.z * -1;
+	std::cout << test.z << std::endl;
+	if(test.z >= 4.5){	
 	std::cout << "HAND IS OPEN" << std::endl;
 	}
-	if(test.y <= -2.5){
+	if(test.z <= -2.5){
 	std::cout << "HAND IS CLOSED" << std::endl;
 	}
 	test = Vector::zero();
