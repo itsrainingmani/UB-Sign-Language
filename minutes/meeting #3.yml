@@ -7,8 +7,8 @@ excused_absences: [
   ]
 task_progress: [
   {ubit: chserafi, progress: Maintained minutes for previous meetings and submitted them for Sprint #1. Helped to record the YouTube video for Sprint #1.},
-  {ubit: mtiruman, progress: Initialized repository and gave access to the other members.},
-  {ubit: adybhav, progress: None.},
+  {ubit: mtiruman, progress: Initialized repository and gave access to the other members. Updated the README file.},
+  {ubit: adybhav, progress: Understood and discovered the environment.},
   {ubit: tsmccorm, progress: Created a modified Sample executable that produced more manageable output. Helped to record the YouTube video for Sprint #1.},
   {ubit: tm66, progress: Helped to record the YouTube video for Sprint #1.}
   ]
