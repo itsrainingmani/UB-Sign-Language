@@ -44,7 +44,7 @@ typedef unsigned __int64 uint64_t;
 #define LEAP_EXPORT_CLASS
 #define LEAP_EXPORT_PLUGIN
 #endif
-
+void testmethod(Leap::Vector);
 namespace Leap {
 
   // Interface for internal use only
@@ -66,7 +66,7 @@ namespace Leap {
   private:
     LEAP_EXPORT Implementation* reference() const;
   };
-
+  
   // Forward declarations for internal use only
   class PointableImplementation;
   class BoneImplementation;
