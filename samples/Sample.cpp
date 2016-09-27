@@ -12,7 +12,7 @@
 #include <unistd.h>
 
 using namespace Leap;
-bool isL(int [5]);
+
 class SampleListener : public Listener {
   public:
     virtual void onInit(const Controller&);
@@ -102,17 +102,10 @@ void SampleListener::onFrame(const Controller& controller) {
 	}
 	count ++;
     }
-//	test.z = test.z * -1;
 	std::cout << test.z << std::endl; //TODO FIND OUT HOW TO ROTATE VALES TO MAKE HAND UP PROPERLY
 	testmethod(test);
-/*	if(test.z >= 4.5){	
-	std::cout << "HAND IS OPEN" << std::endl;
-	}
-	if(test.z <= -2.5){
-	std::cout << "HAND IS CLOSED" << std::endl;
-	}*/
 	if(isL(dir)){
-		std::cout << "ITIS L" << std::endl;
+		std::cout << "IT IS L" << std::endl;
 	}
 	test = Vector::zero();
   }
@@ -127,13 +120,38 @@ void testmethod(Vector test){
 	}
 
 }
-bool isL(int dir [5]){ //TODO ADD TO HEADER
-	bool yes = false;
+bool isL(int dir [5]){ 
+	bool check = false;
 	if(dir[0]  >= .6 && dir[0] <= .8 && dir[1] >= .9 && dir[2] <= -.9 && dir[3] <= -.9 && dir[4] <= -.9){
-		yes = true;
+		check = true;
 	}
-	return yes;
+	return check;
 }
+bool isP(int dir [5]){
+	bool check = false;
+	return check;
+}
+
+bool isK(int dir [5]){
+	bool check = false;
+	if(dir[0] >=  .9 && dir[1] >= .9 && dir[2] >= -.1 && dir[2] <= .1 && dir[3] <= -.9 && dir[4] <= -.9){
+		check = true;
+	}
+	return check;
+}
+
+bool isD(int dir [5]){
+	bool check = false;
+	if(dir[0] >=0 && dir[0] <= .25 && dir[1] >= .9 && dir[2] <= 0 && dir[2] >= -.25 && dir[3] <= 0 && dir[3] >= -.25 && dir[4] <= 0 && dir[4] >= -.25){
+		check = true;
+	}
+	return check;
+}
+
+bool isR(int dir [5]){
+
+}
+
 void SampleListener::onFocusGained(const Controller& controller) {
   std::cout << "Focus Gained" << std::endl;
 }
