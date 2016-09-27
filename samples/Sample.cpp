@@ -5,13 +5,14 @@
 * https://developer.leapmotion.com/sdk_agreement, or another agreement         *
 * between Leap Motion and you, your company or other organization.             *
 \******************************************************************************/
-
+//TODO TEST OUT ISL
 #include <iostream>
 #include <cstring>
 #include "Leap.h"
 #include <unistd.h>
-using namespace Leap;
 
+using namespace Leap;
+bool isL(int [5]);
 class SampleListener : public Listener {
   public:
     virtual void onInit(const Controller&);
@@ -82,6 +83,8 @@ void SampleListener::onFrame(const Controller& controller) {
 
     // Get fingers
 	Vector test = Vector::zero();
+	int dir [5];
+	int count = 0;
     const FingerList fingers = hand.fingers();
     for (FingerList::const_iterator fl = fingers.begin(); fl != fingers.end(); ++fl) {
       const Finger finger = *fl;
@@ -94,21 +97,43 @@ void SampleListener::onFrame(const Controller& controller) {
 //                  << " bone, start: " << bone.prevJoint()
 //                  << ", end: " << bone.nextJoint()
 //                  << ", direction: " << bone.direction() << std::endl;
-     test += bone.direction(); 
+	test += bone.direction();
+	dir[count] = bone.direction().z;
 	}
+	count ++;
     }
 //	test.z = test.z * -1;
-	std::cout << test.z << std::endl;
-	if(test.z >= 4.5){	
+	std::cout << test.z << std::endl; //TODO FIND OUT HOW TO ROTATE VALES TO MAKE HAND UP PROPERLY
+	testmethod(test);
+/*	if(test.z >= 4.5){	
 	std::cout << "HAND IS OPEN" << std::endl;
 	}
 	if(test.z <= -2.5){
 	std::cout << "HAND IS CLOSED" << std::endl;
+	}*/
+	if(isL(dir)){
+		std::cout << "ITIS L" << std::endl;
 	}
 	test = Vector::zero();
   }
 }
+void testmethod(Vector test){
 
+	if(test.z >=4.5){
+		std::cout << "HAND IS OPEN" << std::endl;
+	}
+	if(test.z <= -2.5){
+		std::cout << "HAND IS CLOSED" << std::endl;
+	}
+
+}
+bool isL(int dir [5]){ //TODO ADD TO HEADER
+	bool yes = false;
+	if(dir[0]  >= .6 && dir[0] <= .8 && dir[1] >= .9 && dir[2] <= -.9 && dir[3] <= -.9 && dir[4] <= -.9){
+		yes = true;
+	}
+	return yes;
+}
 void SampleListener::onFocusGained(const Controller& controller) {
   std::cout << "Focus Gained" << std::endl;
 }
@@ -148,7 +173,7 @@ int main(int argc, char** argv) {
 
   // Keep this process running until Enter is pressed
   std::cout << "Press Enter to quit..." << std::endl;
-  std::cin.get();
+    std::cin.get();
 
   // Remove the sample listener when done
   controller.removeListener(listener);
