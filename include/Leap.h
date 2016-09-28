@@ -45,11 +45,11 @@ typedef unsigned __int64 uint64_t;
 #define LEAP_EXPORT_PLUGIN
 #endif
 void testmethod(Leap::Vector);
-bool isL(int[5]);
-bool isP(int[5]);
-bool isK(int[5]);
-bool isD(int[5]);
-bool isR(int[5]);
+bool isL(float[5]);
+bool isP(float[5]);
+bool isK(float[5]);
+bool isD(float[5]);
+bool isR(float[5]);
 namespace Leap {
 
   // Interface for internal use only
