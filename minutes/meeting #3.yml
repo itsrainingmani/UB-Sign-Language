@@ -1,6 +1,6 @@
 date: September 19, 2016
 meeting_type: group
-attendance: [chserafi, tsmccorm, mtiruman, adybhav,tm66]
+attendance: [chserafi, tsmccorm, mtiruman, abhavnan,tm66]
 absent: []
 excused_absences: [
   {}
@@ -8,7 +8,7 @@ excused_absences: [
 task_progress: [
   {ubit: chserafi, progress: Maintained minutes for previous meetings and submitted them for Sprint #1. Helped to record the YouTube video for Sprint #1.},
   {ubit: mtiruman, progress: Initialized repository and gave access to the other members. Updated the README file.},
-  {ubit: adybhav, progress: Understood and discovered the environment.},
+  {ubit: abhavnan, progress: Understood and discovered the environment.},
   {ubit: tsmccorm, progress: Created a modified Sample executable that produced more manageable output. Helped to record the YouTube video for Sprint #1.},
   {ubit: tm66, progress: Helped to record the YouTube video for Sprint #1.}
   ]
