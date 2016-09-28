@@ -83,7 +83,8 @@ void SampleListener::onFrame(const Controller& controller) {
 
     // Get fingers
 	Vector test = Vector::zero();
-	int dir [5];
+	Vector check = Vector::zero();
+	float dir [5];
 	int count = 0;
     const FingerList fingers = hand.fingers();
     for (FingerList::const_iterator fl = fingers.begin(); fl != fingers.end(); ++fl) {
@@ -98,14 +99,25 @@ void SampleListener::onFrame(const Controller& controller) {
 //                  << ", end: " << bone.nextJoint()
 //                  << ", direction: " << bone.direction() << std::endl;
 	test += bone.direction();
-	dir[count] = bone.direction().z;
+	check = bone.direction();
+	dir[count] = check.z;
 	}
+	check = Vector::zero();
 	count ++;
     }
-	std::cout << test.z << std::endl; //TODO FIND OUT HOW TO ROTATE VALES TO MAKE HAND UP PROPERLY
+//	std::cout << test.z << std::endl; //TODO FIND OUT HOW TO ROTATE VALES TO MAKE HAND UP PROPERLY
 	testmethod(test);
 	if(isL(dir)){
 		std::cout << "IT IS L" << std::endl;
+	}
+	if(isP(dir)){
+		std::cout << "IT IS P" << std::endl;
+	}
+	if(isK(dir)){
+		std::cout << "IT IS K" << std::endl;
+	}
+	if(isD(dir)){
+		std::cout << "IT IS D" << std::endl;
 	}
 	test = Vector::zero();
   }
@@ -120,27 +132,34 @@ void testmethod(Vector test){
 	}
 
 }
-bool isL(int dir [5]){ 
+bool isL(float dir[5]){ 
 	bool check = false;
-	if(dir[0]  >= .6 && dir[0] <= .8 && dir[1] >= .9 && dir[2] <= -.9 && dir[3] <= -.9 && dir[4] <= -.9){
+	for(int i = 0; i < 5; i++){
+		std::cout << dir[i] << " ";
+	}
+	std::cout << " " << std::endl;
+	int add = dir[2] + dir[3] + dir[4];
+	if(dir[0]  >= .6 && dir[0] <= .8 && dir[1] >= .9 && add <= -1.5){
 		check = true;
 	}
 	return check;
 }
-bool isP(int dir [5]){
+bool isP(float dir [5]){
 	bool check = false;
 	return check;
 }
 
-bool isK(int dir [5]){
+bool isK(float dir [5]){
 	bool check = false;
-	if(dir[0] >=  .9 && dir[1] >= .9 && dir[2] >= -.1 && dir[2] <= .1 && dir[3] <= -.9 && dir[4] <= -.9){
+	int add =dir[0] + dir[1];
+	int add2 = dir[3] + dir[4];
+	if(add >= 1.25 && dir[2] >= -.1 && dir[2] <= .1 && add2 <= -1.5){
 		check = true;
 	}
 	return check;
 }
 
-bool isD(int dir [5]){
+bool isD(float dir [5]){
 	bool check = false;
 	if(dir[0] >=0 && dir[0] <= .25 && dir[1] >= .9 && dir[2] <= 0 && dir[2] >= -.25 && dir[3] <= 0 && dir[3] >= -.25 && dir[4] <= 0 && dir[4] >= -.25){
 		check = true;
@@ -148,8 +167,8 @@ bool isD(int dir [5]){
 	return check;
 }
 
-bool isR(int dir [5]){
-
+bool isR(float dir [5]){
+	return false; //TODO LOOK TO SWAP THIS LETTER FOR ANOTHER ONE
 }
 
 void SampleListener::onFocusGained(const Controller& controller) {
