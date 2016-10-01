@@ -84,7 +84,9 @@ void SampleListener::onFrame(const Controller& controller) {
     // Get fingers
 	Vector test = Vector::zero();
 	Vector check = Vector::zero();
-	float dir [5];
+	float dirx [5];
+	float dirz [5];
+	float diry [5];
 	int count = 0;
     const FingerList fingers = hand.fingers();
     for (FingerList::const_iterator fl = fingers.begin(); fl != fingers.end(); ++fl) {
@@ -100,24 +102,28 @@ void SampleListener::onFrame(const Controller& controller) {
 //                  << ", direction: " << bone.direction() << std::endl;
 	test += bone.direction();
 	check = bone.direction();
-	dir[count] = check.z;
+	dirz[count] = check.z;
+	dirx[count] = check.x;
+	diry[count] = check.y;
 	}
 	check = Vector::zero();
 	count ++;
     }
-//	std::cout << test.z << std::endl; //TODO FIND OUT HOW TO ROTATE VALES TO MAKE HAND UP PROPERLY
+//	std::cout << test.z << std::endl;
 	testmethod(test);
-	if(isL(dir)){
-		std::cout << "IT IS L" << std::endl;
+	//PLEASE NOTE ALL VALUES HERE SHIFTED WAY OVER FOR TESTING PURPOSES
+	//TODO MAKE SO THERE CAN ONLY BE ONE HIGHLANDER, or one result
+	if(isL(dirz)){
+		std::cout << "                                                                    IT IS L" << std::endl;
 	}
-	if(isP(dir)){
-		std::cout << "IT IS P" << std::endl;
+	if(isP(diry)){
+		std::cout << "                                                                    IT IS P" << std::endl;
 	}
-	if(isK(dir)){
-		std::cout << "IT IS K" << std::endl;
+	if(isK(dirz)){
+		std::cout << "                                                                    IT IS K" << std::endl;
 	}
-	if(isD(dir)){
-		std::cout << "IT IS D" << std::endl;
+	if(isD(dirz)){
+		std::cout << "                                                                    IT IS D" << std::endl;
 	}
 	test = Vector::zero();
   }
@@ -132,43 +138,52 @@ void testmethod(Vector test){
 	}
 
 }
-bool isL(float dir[5]){ 
+bool isL(float dirz[5]){ //SEEMS TO WORK WITH SOME DEGREE OF CORRECTNESS
 	bool check = false;
+	std::cout << "BASE DIR VALUE ";
 	for(int i = 0; i < 5; i++){
-		std::cout << dir[i] << " ";
+		std::cout << dirz[i] << " ";
 	}
 	std::cout << " " << std::endl;
-	float add = dir[2] + dir[3] + dir[4];
-	if(dir[0]  >= .6 && dir[0] <= .8 && dir[1] >= .9 && add <= -1.5){
+	float add = dirz[2] + dirz[3] + dirz[4];
+	if(dirz[0]  >= .6 && dirz[0] <= .8 && dirz[1] >= .9 && add <= -1.5){
 		check = true;
 	}
 	return check;
 }
-bool isP(float dir[5]){
+bool isP(float diry[5]){ //SEEMS TO WORK WITH SOME DEGREE OF CORRECTNESS
 	bool check = false;
-	return check;
-}
-
-bool isK(float dir[5]){
-	bool check = false;
-	float add =dir[0] + dir[1];
-	float add2 = dir[3] + dir[4];
-	std::cout << add <<" " << add2 << std::endl;
-	if(add >= 1.25 && dir[2] <= .2 && dir[2] >= -.2 && add2 <= -1.25){
+	float add = diry[0] + diry[1];
+	float add2 = diry[3] + diry[4];
+	std::cout << "isP VALUE " << add << " " << add2 << " " << diry[2] << std::endl;
+	if(add >= 1.25 && diry[2] <= .2 &&  diry[2] >= -.2 && add2 <= -1.25){
 		check = true;
 	}
 	return check;
 }
 
-bool isD(float dir[5]){
+bool isK(float dirz[5]){ //SEEMS TO WORK WITH SOME DEGREE OF CORRECTNESS
 	bool check = false;
-	if(dir[0] >=0 && dir[0] <= .25 && dir[1] >= .9 && dir[2] <= 0 && dir[2] >= -.25 && dir[3] <= 0 && dir[3] >= -.25 && dir[4] <= 0 && dir[4] >= -.25){
+	float add =dirz[0] + dirz[1];
+	float add2 = dirz[3] + dirz[4];
+	std::cout << "isK VALUE "  << add << " " << add2 << " " << dirz[2] << std::endl;
+	if(add >= 1.25 && dirz[2] <= .2 && dirz[2] >= -.2 && add2 <= -1.25){
 		check = true;
 	}
 	return check;
 }
 
-bool isR(float dir[5]){
+bool isD(float dirz[5]){ //SEEMS TO WORK WITH SOME DEGREE OF CORRECTNESS
+	bool check = false;
+	float add = dirz[2] + dirz[3] + dirz[4] + dirz[0];
+	std::cout << "isD VALUE " << add << " " << dirz[1] << std::endl;
+	if(dirz[1] >= .9 && add <= 1 && add >= -.5){
+		check = true;
+	}
+	return check;
+}
+
+bool isR(float dirx[5]){
 	return false; //TODO LOOK TO SWAP THIS LETTER FOR ANOTHER ONE
 }
 
