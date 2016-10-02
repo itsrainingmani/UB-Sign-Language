@@ -18,5 +18,12 @@ ifeq ($(OS), Darwin)
 	install_name_tool -change @loader_path/libLeap.dylib ../lib/libLeap.dylib Sample
 endif
 
+Test: Test.cpp
+	$(CXX) -Wall -g -I../include test.cpp -o Test $(LEAP_LIBRARY)
+ifeq ($(OS), Darwin)
+	install_name_tool -change @loader_path/libLeap.dylib ../lib/libLeap.dylib Test
+endif
+
 clean:
 	rm -rf Sample Sample.dSYM
+	rm -rf Test Test.dSYM
