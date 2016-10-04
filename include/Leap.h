@@ -49,7 +49,7 @@ bool isL(float[5]);
 bool isP(float[5]);
 bool isK(float[5]);
 bool isD(float[5]);
-bool isR(float[5]);
+bool isF(float[5]);
 namespace Leap {
 
   // Interface for internal use only
