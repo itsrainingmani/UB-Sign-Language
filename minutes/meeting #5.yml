@@ -1,0 +1,26 @@
+date: September 28, 2016
+meeting_type: instructor
+attendance: [chserafi, tsmccorm, adybhav, tm66]
+absent: [mtiruman]
+excused_absences: [
+  {ubit: mtiruman, reason: Had a work responsibility.}
+  ]
+task_progress: [
+  {ubit: chserafi, progress: Added helper functions within code base for easier merging. Started work on implementing COQGB.},
+  {ubit: tsmccorm, progress: Finished implementing PKDLF. Helped other members develop their code.},
+  {ubit: tm66, progress: Setup work enviornment on personal machine. Researched machine learning techniques.},
+  {ubit: adybhav, progress: Started work on implementing ASTEX. Researched improving the accuracy of Leap Motion recognition.},
+  {ubit: mtiruman, progress: Started work on implementing RWUVH.}
+  ]
+issues: [
+  {ubit: chserafi, issue: Finish implementing COQGB.},
+  {ubit: tsmccorm, issue: Increase accuracy of PKDLR.},
+  {ubit: tm66, issue: Finish implementing MINY.},
+  {ubit: adybhav, issue: Finish implementing ASTEX.},
+  {ubit: mtiruman, issue: Finish implementing RWUVH.}
+  ]
+Notes:  |
+  Group discussed worries about the latent accuracy of the Leap Motion. Determined that it could be possibly to modify the source code.
+  Overall goal of the project changed to implement static letters, possibly J and Z, and turn the program into a program that can help users learn fingerspelling.
+  Group discussed plans about how to merge code bases after Sprint #2 is complete, giving us time to finish our individual letters.
+  Talked with Jessie about the possibility of checking out a Leap Motion so that we could develop from home.

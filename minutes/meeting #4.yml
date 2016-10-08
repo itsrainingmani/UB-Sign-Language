@@ -1,0 +1,22 @@
+date: September 21, 2016
+meeting_type: ta
+attendance: [chserafi, tsmccorm, mtiruman, adybhav, tm66]
+absent: []
+excused_absences: [
+  {}
+  ]
+task_progress: [
+  {ubit: chserafi, progress: None.},
+  {ubit: mtiruman, progress: Setup slack notifications to sync up with GitHub repo. Researched machine learning possibilities. Updated ReadMe.},
+  {ubit: adybhav, progress: Helped to fine-tune the previous prototype, using the new webcam-mounted Leap Motion angle.},
+  {ubit: tsmccorm, progress: Fine-tuned previous prototype.},
+  {ubit: tm66, progress: None.}
+  ]
+issues: [
+  {ubit: mtiruman, issue: Entire group is unfamiliar with machine learning process, but believe that it would be a good fit for the project. Mani in particular said he would look into developing a system, but it seems like a large enough issue for more people.},
+  {ubit: tsmccorm, issue: Group believes that having a sample of the Leap Motion's output would help for formatting, Tim agreed to do this.}
+  {ubit: chserafi, issue: Group agreed that having the Leap Motion mounted in a webcam-like orientation would be beneficial. Chris will look into finding a mount.}
+  ]
+Notes:  |
+  Group should implement GitHub issues, as they are part of further points.
+  Group decided to separate natural counting and the alphabet based on which hand was in vision. Left hand will handle normal counting, right hand will handle signed alphabet.
