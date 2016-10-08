@@ -8,9 +8,9 @@ excused_absences: [
 task_progress: [
   {ubit: chserafi, progress: Created public and private Slack channels.},
   {ubit: mtiruman, progress: Created repository on GitHub.},
-  {ubit: adybhav, progress: None},
+  {ubit: adybhav, progress: Develop ideas for format  of YouTube video.},
   {ubit: tsmccorm, progress: Filled out group confirmation form.},
-  {ubit: tm66, progress: None}
+  {ubit: tm66, progress: Worked on creating development environment. Develop ideas for YouTube video.}
   ]
 issues: [
   {}
