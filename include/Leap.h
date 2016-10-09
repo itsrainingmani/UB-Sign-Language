@@ -51,6 +51,15 @@ bool isT(float[5]);
 #define LEAP_EXPORT_PLUGIN
 #endif
 
+int isSideways(float*);
+float averageDirection(float[5][4][3], int, int, int, int);
+void allAverageDirection(float[5][4][3], float*[5][3]);
+float distanceBetweenFingers(float[5][4][3], int, int);
+bool isLetterU(float[5][4][3], float[5][3]);
+bool isLetterV(float[5][4][3], float[5][3]);
+bool isLetterW(float[5][4][3], float[5][3]);
+bool isLetterR(float[5][4][3], float[5][3]);
+bool isLetterH(float[5][4][3], float[5][3], float[3]);
 namespace Leap {
 
   // Interface for internal use only
@@ -72,7 +81,7 @@ namespace Leap {
   private:
     LEAP_EXPORT Implementation* reference() const;
   };
-
+  
   // Forward declarations for internal use only
   class PointableImplementation;
   class BoneImplementation;
