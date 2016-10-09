@@ -24,6 +24,12 @@ typedef unsigned __int64 uint64_t;
 #include <stdint.h>
 #endif
 
+bool isS(float[5]);
+bool isA(float[5]);
+bool isX(float[5]);
+bool isE(float[5]);
+bool isT(float[5]);
+
 // Define Leap export macros
 #if defined(_MSC_VER) // Visual C++
 #if LEAP_API_INTERNAL
