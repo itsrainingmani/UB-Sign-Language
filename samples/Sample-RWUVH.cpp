@@ -6,6 +6,11 @@
 * between Leap Motion and you, your company or other organization.             *
 \******************************************************************************/
 
+/*
+Author: Manikandan Tirumani Sundararajan
+CSE 442 - Sign Language Translation
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Leap.h"
@@ -240,6 +245,7 @@ bool isLetterR(float information[5][4][3], float avgDir[5][3]){
 	return false;
 }
 
+//This so inaccurate. Holy Shit I need to do something about it.
 bool isLetterH(float information[5][4][3], float avgDir[5][3], float angles[3]){
 	// printDir(avgDir);
 	if (isSideways(angles)){
@@ -348,14 +354,7 @@ void SampleListener::onFrame(const Controller& controller) {
 		// if (isSideways(angles)){
 		// 	printDir(dir);
 		// }
-		// printAngles(angles);
-		// printBoneInformation(bone_information);
-		// printSpecificFingerInfo(bone_information, 1);
-		// std::cout<<std::endl;
-		// printSpecificFingerInfo(bone_information, 2);
-		// std::cout<<"The distance between fingers 1 and 2 is - "<<fingerDifferential(bone_information, 1, 2)<<std::endl;
-		// char finally = whichLetter(bone_information);
-		// std::cout<<fingerDifferential(bone_information, 1, 2)<<std::endl;
+		
 		if (isLetterU(bone_information, dir))
 			std::cout<<"The Letter is U"<<std::endl;
 		else if (isLetterV(bone_information, dir))
