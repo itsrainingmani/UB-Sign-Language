@@ -44,12 +44,16 @@ typedef unsigned __int64 uint64_t;
 #define LEAP_EXPORT_CLASS
 #define LEAP_EXPORT_PLUGIN
 #endif
-void testmethod(Leap::Vector);
-bool isL(float[5]);
-bool isP(float[5]);
-bool isK(float[5]);
-bool isD(float[5]);
-bool isR(float[5]);
+
+int isSideways(float*);
+float averageDirection(float[5][4][3], int, int, int, int);
+void allAverageDirection(float[5][4][3], float*[5][3]);
+float distanceBetweenFingers(float[5][4][3], int, int);
+bool isLetterU(float[5][4][3], float[5][3]);
+bool isLetterV(float[5][4][3], float[5][3]);
+bool isLetterW(float[5][4][3], float[5][3]);
+bool isLetterR(float[5][4][3], float[5][3]);
+bool isLetterH(float[5][4][3], float[5][3], float[3]);
 namespace Leap {
 
   // Interface for internal use only

@@ -71,22 +71,7 @@ int isSideways(float *array) {
 	}
 }
 
-//Prints out / returns 1 if hand is open.
-int openOrClosed(Vector vector) {
-	std::cout << vector.z << std::endl;
-	if (vector.z >= 4.5) {	
-		std::cout << "HAND IS OPEN" << std::endl;
-		return 1;
-	} 
-	else {
-		if (vector.z <= -2.5) {
-			std::cout << "HAND IS CLOSED" << std::endl;
-			return 2;
-		}
-	}
-	return 0;	
-}
-
+//Prints out all Finger and bone information
 void printBoneInformation(float information[5][4][3]) {
 	for (int finger = 0; finger < 5; finger = finger + 1) {
 		std::cout << "Finger: ";
@@ -141,7 +126,8 @@ void printBoneInformation(float information[5][4][3]) {
 	std::cout << std::endl << std::endl;
 }
 
-void printDir(float avgDir[5][3]){
+//Prints out the average direction of all axes for every finger
+void printDirection(float avgDir[5][3]){
 	for (int finger = 0; finger < 5; finger++){
 		std::cout<<"Finger "<<finger<<std::endl;
 		for (int dir = 0; dir < 3; dir++){
@@ -162,6 +148,7 @@ void printDir(float avgDir[5][3]){
 	}
 }
 
+//Prints out the Roll, Pitch and Yaw for the hand
 void printAngles(float angles[3]){
 	for (int i = 0; i < 3; i++){
 		switch(i){
@@ -189,6 +176,7 @@ float averageDirection(float information[5][4][3], int finger, int bone_start, i
 	return sum/(bone_finish - bone_start + 1);
 }
 
+//Calculates the average direction for all the fingers
 void allAverageDirection(float information[5][4][3], float (&avgDir)[5][3]){
 	// float avgDir[5][3];
 	for (int i = 0; i < 5; i++){
@@ -196,10 +184,10 @@ void allAverageDirection(float information[5][4][3], float (&avgDir)[5][3]){
 			avgDir[i][j] = averageDirection(information, i, 1, 3, j);
 		}
 	}
-	// return avgDir;	
 }
 
-float fingerDifferential(float information[5][4][3], int finger1, int finger2){
+//Calculates the distance between the distal phalanges for any 2 fingers
+float distanceBetweenFingers(float information[5][4][3], int finger1, int finger2){
 	float x1 = information[finger1][3][0];
 	float y1 = information[finger1][3][2];
 	float x2 = information[finger2][3][0];
@@ -211,49 +199,45 @@ float fingerDifferential(float information[5][4][3], int finger1, int finger2){
 	return sqrt(distancex - distancey);
 }
 
+//Check for letter U
 bool isLetterU(float information[5][4][3], float avgDir[5][3]){
-	if (avgDir[0][2] > 0.3 && avgDir[1][2] > 0.9 && avgDir[2][2] > 0.9 && avgDir[3][2] < 0.0 && avgDir[4][2] < 0.0 && fingerDifferential(information, 1, 2) < 0.1){
-		// std::cout<<"X DIFF "<<fingerDifferential(information, 1, 2)<<std::endl;
+	if (avgDir[0][2] > 0.3 && avgDir[1][2] > 0.9 && avgDir[2][2] > 0.9 && avgDir[3][2] < 0.0 && avgDir[4][2] < 0.0 && distanceBetweenFingers(information, 1, 2) < 0.1){
 		return true;
 	}
 	return false;
 }
 
+//Check for letter V
 bool isLetterV(float information[5][4][3], float avgDir[5][3]){
-	if (avgDir[0][2] > 0.3 && avgDir[1][2] > 0.9 && avgDir[2][2] > 0.9 && avgDir[3][2] < 0.0 && avgDir[4][2] < 0.0 && fingerDifferential(information, 1, 2) > 0.3 && (information[1][3][0] > information[2][3][0])){
-		// std::cout<<"The Letter is V"<<std::endl;
-		// std::cout<<"X DIFF "<<fingerDifferential(information, 1, 2)<<std::endl;
+	if (avgDir[0][2] > 0.3 && avgDir[1][2] > 0.9 && avgDir[2][2] > 0.9 && avgDir[3][2] < 0.0 && avgDir[4][2] < 0.0 && distanceBetweenFingers(information, 1, 2) > 0.3 && (information[1][3][0] > information[2][3][0])){
 		return true;
 	}
 	return false;
 }
 
+//Check for letter W
 bool isLetterW(float information[5][4][3], float avgDir[5][3]){
 	if (avgDir[0][2] > 0.2 && avgDir[1][2] > 0.9 && avgDir[2][2] > 0.9 && avgDir[3][2] > 0.9 && avgDir[4][2] < 0.0){
-		// std::cout<<"The Letter is W"<<std::endl;
 		return true;
 	}
 	return false;
 }
 
+//Check for letter R
 bool isLetterR(float information[5][4][3], float avgDir[5][3]){
-	if (avgDir[0][2] > 0.3 && avgDir[1][2] > 0.9 && avgDir[2][2] > 0.9 && avgDir[3][2] < 0.0 && avgDir[4][2] < 0.0 && fingerDifferential(information, 1, 2) > 0.2 && (information[1][3][0] < information[2][3][0])){
-		// std::cout<<"The Letter is R"<<std::endl;
-		// std::cout<<"X DIFF "<<fingerDifferential(information, 1, 2)<<std::endl;
+	if (avgDir[0][2] > 0.3 && avgDir[1][2] > 0.9 && avgDir[2][2] > 0.9 && avgDir[3][2] < 0.0 && avgDir[4][2] < 0.0 && distanceBetweenFingers(information, 1, 2) > 0.2 && (information[1][3][0] < information[2][3][0])){
 		return true;
 	}
 	return false;
 }
 
+//Check for letter H
 //This so inaccurate. Holy Shit I need to do something about it.
+//Never mind. It works now. Need to hold the hand right in the middle of the leap though
 bool isLetterH(float information[5][4][3], float avgDir[5][3], float angles[3]){
-	// printDir(avgDir);
 	if (isSideways(angles)){
-		// printDir(avgDir);
 		if (avgDir[0][0] > 0.0 && avgDir[1][0] > 0.0 && avgDir[2][0] > 0.0 && avgDir[3][0] < 0.0 && avgDir[4][0] < 0.0){
-			// printDir(avgDir);
 			if (avgDir[0][1] > 0.0 && avgDir[1][1] > 0.0 && avgDir[2][1] > 0.0 && avgDir[3][1] < 0.0 && avgDir[4][1] < 0.0){
-				// printDir(avgDir);
 				if (avgDir[0][2] < 0.0 && avgDir[1][2] < 0.0 && avgDir[2][2] < 0.0 && avgDir[3][2] < 0.0 && avgDir[4][2] < 0.0){
 					return true;
 				}
@@ -263,6 +247,7 @@ bool isLetterH(float information[5][4][3], float avgDir[5][3], float angles[3]){
 	return false;
 }
 
+//Prints the bone information for a specific finger
 void printSpecificFingerInfo(float information[5][4][3], int finger){
 	for (int bone = 0; bone < 4; bone = bone + 1) {
 			// std::cout << "     ";
@@ -349,11 +334,6 @@ void SampleListener::onFrame(const Controller& controller) {
 
 		float dir[5][3];
 		allAverageDirection(bone_information, dir);
-		// printDir(dir);
-		// isSideways(angles);
-		// if (isSideways(angles)){
-		// 	printDir(dir);
-		// }
 		
 		if (isLetterU(bone_information, dir))
 			std::cout<<"The Letter is U"<<std::endl;
