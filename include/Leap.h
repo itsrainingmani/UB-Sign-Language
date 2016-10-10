@@ -29,6 +29,12 @@ bool isA(float[5]);
 bool isX(float[5]);
 bool isE(float[5]);
 bool isT(float[5]);
+void testmethod(Leap::Vector);
+bool isL(float[5]);
+bool isP(float[5]);
+bool isK(float[5]);
+bool isD(float[5]);
+bool isF(float[5]);
 
 // Define Leap export macros
 #if defined(_MSC_VER) // Visual C++
