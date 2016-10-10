@@ -9,7 +9,3 @@ The purpose of this project is to develop software that can accurately translate
 
 The tech - 
 We will be using the Leap motion to create this software. The leap motion allows us to track hand movement with a high degree of accuracy. The majority of the work that needs to be done is to implement a method that can recognize sign language gestures. We will also be using some facial recognition to gather contextual clues which will make translation easier.
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
