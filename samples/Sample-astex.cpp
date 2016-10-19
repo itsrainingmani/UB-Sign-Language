@@ -113,46 +113,28 @@ void SampleListener::onFrame(const Controller& controller) {
 	//testmethod(test);
 	if(isS(dir)){
 	std::cout << "IT IS S" << std::endl;
-	std::system("espeak -s 10 'It is S'");
+	std::system("espeak -s 10 'It is a S'");
 	}
-	
 	else if(isA(dir)){
 	std::cout << "IT IS A" << std::endl;
-	std::system("espeak -s 10 'It is A'");
-  
+	std::system("espeak -s 10 'It is a A'");
 	}
 	else if(isE(dir)){
-	std::cout<<"IT IS E"<<std::endl;	
-	std::system("espeak -s 10 'It is E'");
-	}
-	else if(isT(dir)){
-	std::cout<<"IT IS T"<<std::endl;
-	std::system("espeak -s 10 'It is T'");	
+	std::cout<<"IT IS E"<<std::endl;
+	std::system("espeak -s 10 'It is E'");	
 	}
 	else if(isX(dir)){
 	std::cout<<"IT IS X"<<std::endl;
 	std::system("espeak -s 10 'It is X'");	
 	}
+	else if(isT(dir)){
+	std::cout<<"IT IS T"<<std::endl;
+	std::system("espeak -s 10 'It is T'");	
+	}
 	test = Vector::zero();
   }
 }
 
-bool isE(float dir[5]){
-	bool check=false;
-		if(dir[0]>=0.22 && dir[0]<0.40 && dir[1]<-0.20 && dir[1]>-0.35 && dir[4]<-0.05 && dir[4]>-0.15)
-	{
-		check=true;
-	}
-	return check;	
-}
-bool isX(float dir[5]){
-	bool check=false;
-		if(dir[0]>=0.65 && dir[0]<0.89 && dir[1]>=0.38 && dir[1]<0.49 && dir[4]<-0.75 && dir[4]>-1.0)
-	{
-		check=true;
-	}
-	return check;	
-}
 bool isS(float dir[5]){
 	bool check=false;
 		if(dir[0]>0.65 && dir[0]<0.89 && dir[1]<-0.85 && dir[1]>-1.0 && dir[4]<-0.75 && dir[4]>-1.0)
@@ -161,6 +143,24 @@ bool isS(float dir[5]){
 	}
 	return check;	
 }
+bool isX(float dir[5]){
+	bool check=false;
+		if(dir[0]>=0.65 && dir[0]<=0.90 && dir[1]>=0.14 && dir[1]<0.42 && dir[4]<-0.59 && dir[4]>-0.82)
+	{
+		check=true;
+	}
+	return check;	
+}
+
+bool isE(float dir[5]){
+	bool check=false;
+		if(dir[0]>=0.64 && dir[0]<0.80 && dir[1]<=-0.20 && dir[1]>-0.42 && dir[4]<0.20 && dir[4]>-0.20)
+	{
+		check=true;
+	}
+	return check;	
+}
+
 bool isA(float dir[5]){
 	bool check=false;
 	if(dir[0]>=0.89 && dir[0]<1.0 && dir[1]<-0.85 && dir[1]>-1.0 && dir[4]<-0.75 && dir[4]>-1.0)
@@ -174,7 +174,7 @@ bool isA(float dir[5]){
 
 bool isT(float dir[5]){
 	bool check=false;
-	if(dir[0]>=0.89 && dir[0]<1.0 && dir[1]<-0.85 && dir[1]>-1.0 && dir[4]<-0.75 && dir[4]>-1.0)
+	if(dir[0]>=0.80 && dir[0]<1.0 && dir[1]<-0.50 && dir[1]>-0.75 && dir[4]<-0.48 && dir[4]>-73])//intially dir[4]>-82
 	{
 	check=true;
 
