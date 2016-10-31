@@ -35,13 +35,23 @@ bool isP(float[5]);
 bool isK(float[5]);
 bool isD(float[5]);
 bool isF(float[5]);
-bool detectN(float[5], float[5], float[5])
-bool detectI(float[5], float[5])
-bool detectY(float[5], float[5])
-bool detectM(float[5], float[5])
-int openOrClosed(Vector vector)
-void printBoneInformation(float information[5][4][3])
-char whichLetter(float information[5][4][3])
+bool detectN(float[5], float[5], float[5]);
+bool detectI(float[5], float[5]);
+bool detectY(float[5], float[5]);
+bool detectM(float[5], float[5]);
+int openOrClosed(Leap::Vector vector);
+void printBoneInformation(float information[5][4][3]);
+char whichLetter(float information[5][4][3]);
+int isSideways(float*);
+float averageDirection(float[5][4][3], int, int, int, int);
+void allAverageDirection(float[5][4][3], float*[5][3]);
+float distanceBetweenFingers(float[5][4][3], int, int);
+bool isLetterU(float[5][4][3], float[5][3]);
+bool isLetterV(float[5][4][3], float[5][3]);
+bool isLetterW(float[5][4][3], float[5][3]);
+bool isLetterR(float[5][4][3], float[5][3]);
+bool isLetterH(float[5][4][3], float[5][3], float[3]);
+
 // Define Leap export macros
 #if defined(_MSC_VER) // Visual C++
 #if LEAP_API_INTERNAL
@@ -63,15 +73,6 @@ char whichLetter(float information[5][4][3])
 #define LEAP_EXPORT_PLUGIN
 #endif
 
-int isSideways(float*);
-float averageDirection(float[5][4][3], int, int, int, int);
-void allAverageDirection(float[5][4][3], float*[5][3]);
-float distanceBetweenFingers(float[5][4][3], int, int);
-bool isLetterU(float[5][4][3], float[5][3]);
-bool isLetterV(float[5][4][3], float[5][3]);
-bool isLetterW(float[5][4][3], float[5][3]);
-bool isLetterR(float[5][4][3], float[5][3]);
-bool isLetterH(float[5][4][3], float[5][3], float[3]);
 namespace Leap {
 
   // Interface for internal use only
