@@ -159,6 +159,39 @@ float distanceBetweenFingers(float information[5][4][3], int finger1, int finger
     return sqrt(distancex - distancey);
 }
 
+// "In Bounds" - checks to see if INFO is within the range of TARGET, using
+// RANGE to determine how accurate the hand position needs to be. Used in "whichLetter"
+// to reduce typing and make logic less intimidating.
+bool ib(float info, float target) {
+ 
+    float min, max;
+    float range = 0.30;
+    
+    if ((target+range) > 1.0) {
+        
+        max = 1.0;
+        
+    } else {
+     
+        max = target + range;
+        
+    }
+    
+    if ((target - range) < -1.0) {
+        
+        min = -1.0;
+        
+    } else {
+     
+        min = target - range;
+        
+    }
+    
+    return (info > min && info < max);
+    
+}
+
+
 //Returns the char of a signed letter that is displayed. This is done stupidly.
 //Also this is done with the LeapMotion mounted on the table, not as a webcam.
 //TODO change this so that it works as a mounted webcam.
