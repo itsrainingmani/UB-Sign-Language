@@ -497,17 +497,19 @@ char whichLetter(float information[5][4][3]) {
 
 void SampleListener::onFrame(const Leap::Controller& controller) {
 
+    controller.setPolicy(Leap::Controller::POLICY_IMAGES);
+
     //Recieve information about the current frame.
     const Leap::Frame frame = controller.frame();
 
-    Leap::ImageList images = frame.images();
-    Leap::Image image = images[1];
+    Leap::ImageList images = controller.images();
+    Leap::Image image = images[0];
 
     const unsigned char* image_buffer = image.data();
     int width = image.width();
     int height = image.height();
 //    int bpp = image.bytesPerPixel();
-    QImage img((uchar *) image_buffer, width, height, QImage::Format_RGB888);
+    QImage img((uchar *) image_buffer, width, height, QImage::Format_Grayscale8);
     QPixmap pxmap = QPixmap::fromImage(img);
     imglbl->setPixmap(pxmap);
 
