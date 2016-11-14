@@ -159,10 +159,7 @@ float distanceBetweenFingers(float information[5][4][3], int finger1, int finger
     return sqrt(distancex - distancey);
 }
 
-// "In Bounds" - checks to see if INFO is within the range of TARGET, using
-// RANGE to determine how accurate the hand position needs to be. Used in "whichLetter"
-// to reduce typing and make logic less intimidating.
-bool ib(float info, float target) {
+bool in_bounds(float information[5][4][3], int finger, int bone, int axis, float target) {
  
     float min, max;
     float range = 0.30;
@@ -187,342 +184,458 @@ bool ib(float info, float target) {
         
     }
     
-    return (info > min && info < max);
+    return (information[finger][bone][axis] > min && information[finger][bone][axis] < max);
     
 }
 
+bool check_bone(float information[5][4][3], int finger, int bone, float bonex, float boney, float bonez) {
 
+	bool check1 = false;
+	bool check2 = false;
+	bool check3 = false;
+
+	if (in_bounds(information, finger, bone, 0, bonex)) {
+
+		check1 = true;
+
+	}
+
+	if (in_bounds(information, finger, bone, 1, boney)) {
+
+		check2 = true;
+
+	}
+
+	if (in_bounds(information, finger, bone, 2, bonez)) {
+
+		check3 = true;
+
+	}
+
+	return (check1 && check2 && check3);
+
+} 
+
+bool check_finger(float information[5][4][3], int finger, float bone1x, float bone2x, float bone3x, float bone1y, float bone2y, float bone3y, float bone1z, float bone2z, float bone3z) {
+
+	bool check1 = false;
+	bool check2 = false;
+	bool check3 = false;
+
+	if (bone_check(information, finger, 1, bone1x, bone1y, bone1z)) {
+
+		check1 = true;
+	
+	}
+
+	if (bone_check(information, finger, 2, bone2x, bone2y, bone2z)) {
+
+		check2 = true;
+
+	}
+
+	if (bone_check(information, finger, 3, bone3x, bone3y, bone3z)) {
+
+		check3 = true;
+
+	}
+
+	return (check1 && check2 && check3);
+
+}
+
+
+//TODO Change all to upper case
 //Returns the char of a signed letter that is displayed. This is done stupidly.
 //Also this is done with the LeapMotion mounted on the table, not as a webcam.
-//TODO change this so that it works as a mounted webcam.
-//TODO change this so it isn't dumb.
 char whichLetter(float information[5][4][3]) {
 
-    //A
-    if (information[0][2][2] >= 0.89 && information[0][2][2] < 1.0 && information[1][2][2] < -0.85
-        && information[1][2][2] >= -1.0 && information[4][2][2] < -0.75 && information[4][2][2] > -1.0) {
-        return 'a';
-    }
-
-    //B
-    if (information[0][1][0] > 0.15 && information[0][3][0] < -0.4 &&
-        averageDirection(information, 0, 1, 3, 1) < 0 &&
-        averageDirection(information, 0, 1, 3, 2) > 0.5) {
-
-//std::cout << "The thumb is positioned like in B." << std::endl;
-
-        if (averageDirection(information, 1, 1, 3, 0) > -0.15 &&
-            averageDirection(information, 1, 1, 3, 0) < 0.15 &&
-            averageDirection(information, 1, 1, 3, 1) < -0.5 &&
-            averageDirection(information, 1, 1, 3, 2) > 0.5) {
-
-//std::cout << "The index finger is positioned like in B." << std::endl;
-
-            if (averageDirection(information, 1, 1, 3, 0) > -0.15 &&
-                averageDirection(information, 1, 1, 3, 0) < 0.15 &&
-                averageDirection(information, 1, 1, 3, 1) < -0.5 &&
-                averageDirection(information, 1, 1, 3, 2) > 0.5) {
-
-//std::cout << "The middle finger is positioned like in B." << std::endl;
-
-                if (averageDirection(information, 1, 1, 3, 0) > -0.05 &&
-                    averageDirection(information, 1, 1, 3, 0) < 0.25 &&
-                    averageDirection(information, 1, 1, 3, 1) < -0.5 &&
-                    averageDirection(information, 1, 1, 3, 2) > 0.5) {
-
-
-//std::cout << "The ring finger is positioned like in B." << std::endl;
-
-                    if (averageDirection(information, 1, 1, 3, 0) > 0 &&
-                        averageDirection(information, 1, 1, 3, 0) < 0.3 &&
-                        averageDirection(information, 1, 1, 3, 1) < -0.5 &&
-                        averageDirection(information, 1, 1, 3, 2) > 0.45) {
-
-//std::cout << "The pinky finger is positioned like in B." << std::endl;
-                        return 'b';
-
-                    }
-                }
-            }
-        }
-    }
-
-    //C
-    if (averageDirection(information, 0, 1, 3, 0) > 0.6 &&
-        averageDirection(information, 0, 1, 3, 1) < 0) {
-
-//std::cout << "The thumb is positioned like in C." << std::endl;
-
-        if (averageDirection(information, 1, 1, 3, 0) > 0.65 &&
-            averageDirection(information, 1, 1, 3, 1) < 0) {
-
-//std::cout << "The index finger is positioned like in C." << std::endl;
-
-            if (averageDirection(information, 2, 1, 3, 0) > 0.65 &&
-                averageDirection(information, 2, 1, 3, 1) < 0) {
-
-//std::cout << "The middle finger is positioned like in C." << std::endl;
-
-                if (averageDirection(information, 3, 1, 3, 0) > 0.65 &&
-                    averageDirection(information, 3, 1, 3, 1) < 0) {
-
-//std::cout << "The ring finger is positioned like in C." << std::endl;
-
-                    if (averageDirection(information, 4, 1, 3, 0) > 0.65 &&
-                        averageDirection(information, 4, 1, 3, 1) < 0) {
-
-//std::cout << "The pinky finger is positioned like in C." << std::endl;
-                        return 'c';
-
-                    }
-                }
-            }
-        }
-    }
-
-    //D
-    if (information[1][2][2] >= 0.9 &&
-        information[0][2][2]+information[2][2][2]+information[3][2][2]+information[4][2][2] <= 1 &&
-            information[0][2][2]+information[2][2][2]+information[3][2][2]+information[4][2][2] >= -0.5) {
-        return 'd';
-    }
-
-    //E
-    if (information[0][2][2] >= 0.64 && information[0][2][2] < 0.8 && information[1][2][2] <= -0.2 &&
-        information[1][2][2] > -0.42 && information[4][2][2] < 0.2 && information[4][2][2] > -0.2) {
-        return 'e';
-    }
-
-
-    //F
-    if (information[0][2][2]+information[1][2][2] >= -0.2 && information[0][2][2]+information[1][2][2] <= 0.3 &&
-        information[2][2][2]+information[3][2][2]+information[4][2][2] >= 2.6) {
-        return 'f';
-    }
-
-    //G
-    if (averageDirection(information, 0, 1, 3, 0) > 0.4 &&
-        averageDirection(information, 0, 1, 3, 1) < 0.2 &&
-        averageDirection(information, 0, 1, 3, 2) > 0.2) {
-
-//std::cout << "The thumb is positioned like in G." << std::endl;
-
-        if (averageDirection(information, 1, 1, 3, 0) > 0.7 &&
-            averageDirection(information, 1, 1, 3, 1) > -0.3 &&
-            averageDirection(information, 1, 1, 3, 1) < 0.3) {
-
-//std::cout << "The index finger is positioned like in G." << std::endl;
-
-            if (information[2][1][0] > 0.5 && information[2][3][0] < -0.3 &&
-                averageDirection(information, 2, 1, 3, 1) > -0.5 &&
-                averageDirection(information, 2, 1, 3, 1) < 0.5 &&
-                averageDirection(information, 2, 1, 3, 2) < -0.25) {
-
-//std::cout << "The middle finger is positioned like in G." << std::endl;
-
-                if (information[3][1][0] > 0.5 && information[3][3][0] < -0.3 &&
-                    averageDirection(information, 3, 1, 3, 1) > -0.5 &&
-                    averageDirection(information, 3, 1, 3, 1) < 0.5 &&
-                    averageDirection(information, 3, 1, 3, 2) < -0.25) {
-
-//std::cout << "The ring finger is positioned like in G." << std::endl;
-
-                    if (information[4][1][0] > 0.5 && information[4][3][0] < -0.3 &&
-                        averageDirection(information, 4, 1, 3, 1) > -0.5 &&
-                        averageDirection(information, 4, 1, 3, 1) < 0.5 &&
-                        averageDirection(information, 4, 1, 3, 2) < -0.25) {
-
-//std::cout << "The pinky finger is positioned like in G." << std::endl;
-                        return 'g';
-
-                    }
-                }
-            }
-        }
-    }
-
-    //H
-    if (averageDirection(information, 0, 1, 3, 0) > 0 && averageDirection(information, 1, 1, 3, 0) > 0 &&
-        averageDirection(information, 2, 1, 3, 0) > 0 && averageDirection(information, 3, 1, 3, 0) < 0 &&
-        averageDirection(information, 4, 1, 3, 0) < 0 &&
-            averageDirection(information, 0, 1, 3, 1) > 0 && averageDirection(information, 1, 1, 3, 1) > 0 &&
-            averageDirection(information, 2, 1, 3, 1) > 0 && averageDirection(information, 3, 1, 3, 1) < 0 &&
-            averageDirection(information, 4, 1, 3, 1) < 0 &&
-                averageDirection(information, 0, 1, 3, 2) < 0 && averageDirection(information, 1, 1, 3, 2) < 0 &&
-                averageDirection(information, 2, 1, 3, 2) < 0 && averageDirection(information, 3, 1, 3, 2) < 0 &&
-                averageDirection(information, 4, 1, 3, 2) < 0) {
-
-        return 'h';
-    }
-
-    //I
-    if (information[1][2][1]+information[2][2][1]+information[3][2][1] >= 2.7 &&
-        information[4][2][1] <= -0.6 && information[0][2][1] < 0.15) {
-        return 'i';
-    }
-
-    //TODO J | Need to figure out motion...
-
-    //K
-    if (information[2][2][2] <= 0.2 && information[2][2][2] >= -0.2 &&
-        information[0][2][2] >= 0.6 && information[1][2][2] >= 0.6 &&
-            information[3][2][2] <= -0.6 && information[4][2][2] <= -0.6) {
-        return 'k';
-    }
-
-    //L
-    if (information[0][2][2] >= 0.6 && information[0][2][2] <= 0.8 &&
-        information[1][2][2] >= 0.9 && information[2][2][2] <= -0.5 &&
-            information[3][2][2] <= -0.5 && information[4][2][2] <= -0.5) {
-        return 'l';
-    }
-
-    //M
-    if (information[1][2][2] >= 0.25 && information[2][2][2] >= 0.25 &&
-        information[3][2][2] >= 0.25 && information[4][2][1] > 0.7 &&
-            information[3][2][1] < 0.4) {
-        return 'm';
-    }
-
-    //N
-    if (information[1][2][2]+information[2][2][2]+information[3][2][2] >= 1.2 &&
-        information[0][2][2] >= 0.6 && information[0][2][0] < 0 &&
-            information[3][2][1] > 0.4 && information[4][2][1] > -0.5) {
-        return 'n';
-    }
-
-    //O
-    if (averageDirection(information, 0, 1, 3, 0) > 0.5 &&
-        averageDirection(information, 0 ,1, 3, 1) < 0) {
-
-        //std::cout << "The thumb is positioned like in O." << std::endl;
-
-        if(information[1][1][0] > 0.3 && averageDirection(information, 1, 2, 3, 0) < 0 &&
-            averageDirection(information, 1, 1, 3, 1) > 0.25) { //doesnt check z axis
-
-            //std::cout << "The index finger is positioned like in O." << std::endl;
-
-            if (information[2][1][0] > 0.3 && averageDirection(information, 2, 2, 3, 0) < 0 &&
-                averageDirection(information, 2, 2, 3, 1) > 0.25) { //doesnt check z axis
-
-                //std::cout << "The middle finger is positioned like in O." << std::endl;
-
-                if (information[3][1][0] > 0.3 && averageDirection(information, 3, 2, 3, 0) < 0.1 &&
-                    averageDirection(information, 3, 1, 3, 1) > 0.15) { //doesnt check z
-
-                    //std::cout << "The ring finger is positioned like in O." << std::endl;
-
-                    if (information[4][1][0] > 0.25 && averageDirection(information, 4, 2, 3, 0) < 0.2 &&
-                        averageDirection(information, 4, 1, 3, 1) > 0.15) { //doesnt check z
-
-                        //std::cout << "The pinky finger is positioned like in O." << std::endl;
-                        return 'o';
-                    }
-                }
-            }
-        }
-    }
-
-    //P
-    if (information[2][2][1] <= 0.2 && information[2][2][1] >= -0.2 &&
-        information[1][2][1] >= 0.6 && information[0][2][1] >= 0.6 &&
-            information[3][2][1] <= -0.6 && information[4][2][1] <= -0.6) {
-        return 'p';
-    }
-
-
-    //Q
-    if (information[0][1][0] > 0.15 &&
-        averageDirection(information, 0, 1, 3, 1) > 0.4 &&
-        averageDirection(information, 0, 1, 3, 2) > 0.3) {
-
-//std::cout << "The thumb is positioned like in Q." << std::endl;
-
-        if (averageDirection(information, 1, 1, 3, 0) > -0.3 && averageDirection(information, 1, 1, 3, 0) < 0.5 &&
-            averageDirection(information, 1, 1, 3, 1) > 0.75) {
-
-//std::cout << "The index finger is positioned like in Q." << std::endl;
-
-            if (averageDirection(information, 2, 1, 3, 0) > -0.4 &&
-                averageDirection(information, 2, 1, 3, 1) < 0.4 &&
-                information[2][1][1] > 0.5 && information[2][3][1] < 0 &&
-                averageDirection(information, 2, 1, 3, 2) < 0) {
-
-//std::cout << "The middle finger is positioned like in Q." << std::endl;
-
-                if (averageDirection(information, 3, 1, 3, 0) > -0.3 &&
-                    information[3][1][1] > 0.5 && information[3][3][1] < 0 &&
-                    averageDirection(information, 3, 1, 3, 2) < 0) {
-
-//std::cout << "The ring finger is positioned like in Q." << std::endl;
-
-                    if (averageDirection(information, 4, 1, 3, 0) > -0.2 &&
-                        information[4][1][1] > 0.5 && information[4][3][1] < 0 &&
-                        averageDirection(information, 4, 1, 3, 2) < 0) {
-
-//std::cout << "The pinky finger is positioned like in Q." << std::endl;
-                        return 'q';
-                    }
-                }
-            }
-        }
-    }
-
-    //R
-    if (averageDirection(information, 0, 1, 3, 2) > 0.3 && averageDirection(information, 1, 1, 3, 2) > 0.9 &&
-        averageDirection(information, 2, 1, 3, 2) > 0.9 && averageDirection(information, 3, 1, 3, 2) < 0 &&
-            averageDirection(information, 4, 1, 3, 2) < 0 && distanceBetweenFingers(information, 1, 2) > 0.2 &&
-                (information[1][3][0] < information[2][3][0])) {
-        return 'r';
-    }
-
-    //S
-    if (information[0][2][2] > 0.65 && information[0][2][2] < 0.89 && information[1][2][2] < -0.85 &&
-        information[1][2][2] > -1.0 && information[4][2][2] < -0.75 && information[4][2][2] > -1.0) {
-        return 's';
-    }
-
-    //T
-    if (information[0][2][2] >= 0.8 && information[0][2][2] < 1.0 && information[1][2][2] < -0.5 &&
-        information[1][2][2] > -0.75 && information[4][2][2] < -0.48 && information[4][2][2] > -0.73) {
-        return 't';
-    }
-
-    //U
-    if (averageDirection(information, 0, 1, 3, 2) > 0.3 && averageDirection(information, 1, 1, 3, 2) > 0.9 &&
-        averageDirection(information, 2, 1, 3, 2) > 0.9 && averageDirection(information, 3, 1, 3, 2) < 0 &&
-            averageDirection(information, 4, 1, 3, 2) < 0 && distanceBetweenFingers(information, 1, 2) < 0.1) {
-        return 'u';
-    }
-
-    //V
-    if (averageDirection(information, 0, 1, 3, 2) > 0.3 && averageDirection(information, 1, 1, 3, 2) > 0.9 &&
-        averageDirection(information, 2, 1, 3, 2) > 0.9 && averageDirection(information, 3, 1, 3, 2) < 0 &&
-            averageDirection(information, 4, 1, 3, 2) < 0 && distanceBetweenFingers(information, 1, 2) > 0.3 &&
-                (information[1][3][0] > information[2][3][0])) {
-        return 'v';
-    }
-
-    //W
-    if (averageDirection(information, 0, 1, 3, 2) > 0.2 && averageDirection(information, 1, 1, 3, 2) > 0.9 &&
-        averageDirection(information, 2, 1, 3, 2) > 0.9 && averageDirection(information, 3, 1, 3, 2) > 0.9 &&
-            averageDirection(information, 4, 1, 3, 2) < 0) {
-        return 'w';
-    }
-
-    //X
-    if (information[0][2][2] >= 0.65 && information[0][2][2] <= 0.9 && information[1][2][2] >= 0.14 &&
-        information[1][2][2] < 0.42 && information[4][2][2] < -0.59 && information[4][2][2] > -0.82) {
-        return 'x';
-    }
-
-    //Y
-    if (information[1][2][1]+information[2][2][1]+information[3][2][1] >= 1.6 &&
-        information[4][2][0] <= 0.1 && information[0][2][0] > 0.2) {
-        return 'y';
-    }
-
-    //TODO Z | Need to do motion...
+	//A
+	if (check_finger(information, 0, 0.49, 0.53, -0.04, -0.80, -0.78, -0.84, 0.36, 0.34, 0.53) {
+		if (check_finger(information, 1, 0.01, -0.08, -0.07, 0.00, 0.99, 0.84, 0.99, 0.06, -0.53) {
+			if (check_finger(information, 2, 0.18, 0.01, -0.09, 0.00, 0.99, 0.82, 0.98, 0.04, -0.55) {
+				if (check_finger(information, 3, 0.21, 0.19, 0.03, -0.10, 0.97, 0.88, 0.97, 0.13, -0.48) {
+					if(check_finger(information, 4, 0.30, 0.52, 0.25, -0.20, 0.85, 0.83, 0.93, 0.08, -0.50) {
+
+					return 'A';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//B
+	if (check_finger(information, 0, 0.52, -0.17, -0.86, -0.33, -0.15, 0.18, 0.79, 0.98, 0.48) {
+		if (check_finger(information, 1, 0.01, 0.00, -0.01, -0.75, -0.71, -0.67, 0.66, 0.71, 0.75) {
+			if (check_finger(information, 2, -0.04, -0.04, -0.04, -0.72, -0.68, -0.64, 0.69, 0.73, 0.77) {
+				if (check_finger(information, 3, -0.08, -0.07, -0.06, -0.70, -0.65, -0.60, 0.71, 0.76, 0.80) {
+					if(check_finger(information, 4, -0.07, -0.05, -0.03, -0.73, -0.68, -0.62, 0.68, 0.74, 0.79) {
+
+					return 'B';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//C
+	if (check_finger(information, 0, 0.90, 0.90, 0.91, -0.41, -0.42, -0.41, 0.09, 0.15, 0.00) {
+		if (check_finger(information, 1, 0.76, 0.78, 0.80, -0.64, -0.60, -0.58, 0.15, 0.16, 0.17) {
+			if (check_finger(information, 2, 0.76, 0.78, 0.79, -0.60, -0.58, -0.56, 0.24, 0.24, 0.24) {
+				if (check_finger(information, 3, 0.80, 0.82, 0.83, -0.60, -0.57, -0.55, 0.06, 0.06, 0.06) {
+					if(check_finger(information, 4, 0.76, 0.78, 0.80, -0.65, -0.62, 0.60, -0.02, -0.03, -0.03) {
+
+					return 'C';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//D
+	if (check_finger(information, 0, 0.49, -0.06, -0.71, -0.55, -0.46, -0.11, 0.67, 0.89, 0.70) {
+		if (check_finger(information, 1, 0.10, 0.07, 0.01, -0.88, -0.36, 0.28, 0.46, 0.93, 0.96) {
+			if (check_finger(information, 2, 0.14, -0.08, -0.15, 0.71, 0.80, 0.33, 0.69, -0.61, -0.94) {
+				if (check_finger(information, 3, 0.19, 0.08, -0.04, 0.67, 0.80, 0.33, 0.71, -0.60, -0.94) {
+					if(check_finger(information, 4, 0.31, 0.37, 0.15, 0.58,  0.75, 0.34, 0.76, -0.55, -0.93) {
+
+					return 'D';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//E
+	if (check_finger(information, 0, 0.28, -0.37, -0.71, -0.36, -0.21, -0.07, 0.89, 0.90, 0.70) {
+		if (check_finger(information, 1, 0.06, -0.04, -0.08, -0.69, 0.58, 0.98, 0.72, 0.82, -0.19) {
+			if (check_finger(information, 2, 0.04, 0.12, 0.02, -0.69, 0.60, 0.97, 0.72, 0.79, -0.25) {
+				if (check_finger(information, 3, 0.15, 0.22, 0.05, -0.57, 0.57, 0.99, 0.80, 0.78, -0.02) {
+					if(check_finger(information, 4, 0.19, 0.38, 0.18, -0.66, 0.44, 0.97, 0.72, 0.81, 0.11) {
+
+					return 'E';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//F
+	if (check_finger(information, 0, 0.53, -0.13, -0.09, -0.28, -0.15, -0.16, 0.79, 0.98, 0.98) {
+		if (check_finger(information, 1, 0.15, -0.27, -0.37, 0.59, 0.94, 0.60, 0.80, -0.20, -0.70) {
+			if (check_finger(information, 2, -0.01, -0.01, 0.00, -0.71, -0.68, -0.66, 0.71, 0.73, 0.76) {
+				if (check_finger(information, 3, 0.10, 0.11, 0.12, -0.73, -0.71, -0.69, 0.67, 0.70, 0.71) {
+					if(check_finger(information, 4, 0.07, 0.09, 0.11, -0.84, -0.82, -0.79, 0.53, 0.57, 0.60) {
+
+					return 'F';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//G
+	if (check_finger(information, 0, 0.85, 0.93, 0.88, -0.44, -0.14, -0.36, 0.29, 0.35, 0.31) {
+		if (check_finger(information, 1, 0.98, 0.99, 0.98, -0.11, -0.02, 0.03, 0.19, -0.05, -0.20) {
+			if (check_finger(information, 2, 0.84, -0.31, -0.77, -0.01, 0.21, 0.22, -0.54, -0.92, -0.60) {
+				if (check_finger(information, 3, 0.82, -0.34, -0.79, -0.07, 0.05, 0.08, -0.56, -0.94, -0.61) {
+					if(check_finger(information, 4, 0.86, -0.27, -0.73, -0.21, -0.14, -0.02, -0.47, -0.95, -0.68) {
+
+					return 'G';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//H
+	if (check_finger(information, 0, 0.92, 0.92, 0.33, -0.04, -0.08, 0.94, 0.38, 0.38, -0.04) {
+		if (check_finger(information, 1, 0.99, 0.99, 0.99, -0.03, -0.02, -0.02, -0.06, -0.08, -0.10) {
+			if (check_finger(information, 2, 0.99, 0.98, 0.98, -0.05, -0.05, -0.05, -0.12, -0.15, -0.17) {
+				if (check_finger(information, 3, 0.66, -0.72, -0.99, -0.08, -0.01, 0.04, -0.75, -0.70, -0.13) {
+					if(check_finger(information, 4, 0.71, -0.66, -0.98, -0.21, -0.30, -0.12, -0.67, -0.69, -0.18) {
+
+					return 'H';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//I
+	if (check_finger(information, 0, 0.48, 0.31, -0.69, -0.30, -0.29, -0.10, 0.83, 0.90, 0.72) {
+		if (check_finger(information, 1, 0.05, -0.17, -0.24, 0.65, 0.98, 0.95, 0.77, 0.12, -0.19) {
+			if (check_finger(information, 2, 0.19, 0.03, -0.05, 0.67, 0.99, 0.97, 0.71, 0.07, -0.23) {
+				if (check_finger(information, 3, 0.25, 0.16, 0.09, 0.65, 0.98, 0.96, 0.71, 0.05, -0.27) {
+					if(check_finger(information, 4, -0.03, 0.17, 0.30, -0.75, 0.36, 0.04, 0.66, 0.92, 0.95) {
+
+					return 'I';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//TODO J somehow...
+
+	//K
+	if (check_finger(information, 0, 0.43, -0.20, -0.37, -0.52, -0.29, -0.19, 0.74, 0.94, 0.91) {
+		if (check_finger(information, 1, 0.06, 0.08, 0.10, -0.74, -0.58, -0.41, 0.67, 0.81, 0.91) {
+			if (check_finger(information, 2, 0.22, 0.24, 0.24, 0.24, 0.33, 0.38, 0.95, 0.92, 0.90) {
+				if (check_finger(information, 3, 0.33, 0.22, 0.06, 0.68, 0.86, 0.56, 0.65, -0.46, -0.83) {
+					if(check_finger(information, 4, 0.44, 0.43, 0.23, 0.57, 0.80, 0.57, 0.69, -0.41, -0.79) {
+
+					return 'K';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//L
+	if (check_finger(information, 0, 0.73, 0.75, 0.90, -0.44, -0.42, -0.30, 0.53, 0.50, 0.30) {
+		if (check_finger(information, 1, 0.11, 0.06, 0.02, -0.78, -0.64, -0.50, 0.61, 0.77, 0.87) {
+			if (check_finger(information, 2, -0.02, -0.06, -0.06, 0.52, 0.99, 0.86, 0.86, -0.06, -0.49) {
+				if (check_finger(information, 3, 0.03, 0.11, 0.11, 0.50, 0.99, 0.86, 0.86, -0.06, -0.49) {
+					if(check_finger(information, 4, 0.15, 0.39, 0.37, 0.40, 0.92, 0.84, 0.90, 0.04, -0.41) {
+
+					return 'L';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//M
+	if (check_finger(information, 0, 0.19, 0.00, -0.53, -0.18, -0.12, 0.06, 0.96, 0.99, 0.85) {
+		if (check_finger(information, 1, 0.05, 0.05, 0.05, -0.35, -0.27, -0.21, 0.94, 0.96, 0.97) {
+			if (check_finger(information, 2, 0.04, 0.06, 0.07, -0.32, -0.24, -0.18, 0.95, 0.97, 0.98) {
+				if (check_finger(information, 3, 0.11, 0.13, 0.15, -0.30, -0.21, -0.13, 0.95, 0.97, 0.98) {
+					if(check_finger(information, 4, 0.31, 0.40, 0.30, 0.42, 0.91, 0.86, 0.85, 0.08, -0.42) {
+
+					return 'M';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//N
+	if (check_finger(information, 0, 0.32, -0.33, -0.58, -0.39, -0.17, -0.04, 0.86, 0.93, 0.81) {
+		if (check_finger(information, 1, -0.02, -0.02, -0.01, -0.04, 0.02, 0.06, 0.99, 0.99, 0.99) {
+			if (check_finger(information, 2, 0.01, 0.03, 0.03, 0.00, 0.05, 0.09, 0.99, 0.99, 0.99) {
+				if (check_finger(information, 3, 0.24, 0.27, 0.23, 0.70, 0.96, 0.91, 0.67, -0.02, -0.33) {
+					if(check_finger(information, 4, 0.35, 0.53, 0.52, 0.63, 0.85, 0.80, 0.69, 0.01, -0.30) {
+
+					return 'N';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//O
+	if (check_finger(information, 0, 0.55, 0.59, 0.32, -0.80, -0.66, -0.16, -0.24, 0.46, 0.93) {
+		if (check_finger(information, 1, 0.97, -0.07, -0.63, 0.18, 0.99, 0.77, 0.15, 0.03, -0.07) {
+			if (check_finger(information, 2, 0.98, -0.07, -0.64, 0.17, 0.98, 0.75, 0.01, -0.18, -0.17) {
+				if (check_finger(information, 3, 0.99, 0.01, -0.59, 0.09, 0.95, 0.77, -0.03, -0.31, -0.25) {
+					if(check_finger(information, 4, 0.99, 0.08, -0.53, -0.04, 0.79, 0.71, -0.09, -0.60, -0.47) {
+
+					return 'O';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//P
+	if (check_finger(information, 0, 0.62, -0.02, -0.15, 0.14, 0.43, 0.46, 0.77, 0.90, 0.87) {
+		if (check_finger(information, 1, 0.12, 0.10, 0.09, 0.21, 0.31, 0.40, 0.97, 0.94, 0.91) {
+			if (check_finger(information, 2, 0.13, 0.09, 0.07, 0.97, 0.99, 0.95, 0.19, -0.13, -0.30) {
+				if (check_finger(information, 3, 0.14, 0.05, -0.03, 0.99, 0.22, -0.33, -0.09, -0.97, -0.95) {
+					if(check_finger(information, 4, 0.24, 0.31, 0.19, 0.97, 0.25, -0.29, -0.01, -0.92, -0.94) {
+
+					return 'P';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//Q
+	if (check_finger(information, 0, 0.22, 0.14, -0.41, 0.89, 0.91, 0.87, 0.40, 0.40, 0.28) {
+		if (check_finger(information, 1, 0.06, 0.03, 0.02, 0.99, 0.93, 0.85, -0.06, -0.36, -0.52) {
+			if (check_finger(information, 2, 0.18, 0.07, -0.02, 0.89, -0.05, -0.54, -0.42, -0.99, -0.84) {
+				if (check_finger(information, 3, 0.21, 0.25, 0.15, 0.89, -0.04, -0.54, -0.39, -0.97, -0.83) {
+					if(check_finger(information, 4, 0.29, 0.50,  0.38, 0.91, 0.00, -0.50, -0.29, -0.87, -0.78) {
+
+					return 'Q';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//R
+	if (check_finger(information, 0, 0.65, 0.39, 0.66, -0.49, -0.48, -0.49, 0.58, 0.79, 0.56) {
+		if (check_finger(information, 1, -0.03, -0.06, -0.08, 0.13, 0.32, 0.44, 0.99, 0.95, 0.89) {
+			if (check_finger(information, 2, 0.21, 0.19, 0.18, 0.08, 0.25, 0.36, 0.97, 0.95, 0.92) {
+				if (check_finger(information, 3, 0.09, 0.03, -0.01, 0.88, 0.78, 0.40, 0.46, -0.63, -0.92) {
+					if(check_finger(information, 4, 0.22, 0.28, 0.19, 0.82, 0.78, 0.43, 0.54, -0.56, -0.88) {
+
+					return 'R';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//S
+	if (check_finger(information, 0, 0.23, -0.15, -0.72, -0.54, -0.49, -0.25, 0.81, 0.86, 0.65) {
+		if (check_finger(information, 1, 0.03, -0.20, -0.18, 0.38, 0.94, 0.54, 0.93, -0.30, -0.82) {
+			if (check_finger(information, 2, 0.19, -0.09, -0.19, 0.38, 0.95, 0.55, 0.90, -0.30, 0.81) {
+				if (check_finger(information, 3, 0.23, 0.03, -0.11, 0.33, 0.96, 0.59, 0.91, -0.27, -0.80) {
+					if(check_finger(information, 4, 0.31, 0.38, 0.12, 0.26, 0.88, 0.57, 0.91, -0.29, -0.81) {
+
+					return 'S';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//T
+	if (check_finger(information, 0, 0.04, -0.21, -0.21, -0.31, -0.18, -0.18, 0.95, 0.96, 0.96) {
+		if (check_finger(information, 1, 0.24, -0.09, 0.22, 0.58, 0.84, 0.31, 0.78, -0.53, -0.92) {
+			if (check_finger(information, 2, 0.38, 0.05, -0.20, 0.52, 0.86, 0.36, 0.77, -0.51, -0.91) {
+				if (check_finger(information, 3, 0.43, 0.23, 0.02, 0.63, 0.85, 0.57, 0.65, -0.46, -0.83) {
+					if(check_finger(information, 4, 0.54, 0.44, 0.18, 0.50, 0.79, 0.56, 0.68, -0.43, -0.81) {
+
+					return 'T';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//U
+	if (check_finger(information, 0, 0.28, -0.42, -0.88, -0.44, -0.31, -0.06, 0.86, 0.85, 0.49) {
+		if (check_finger(information, 1, -0.06, -0.07, -0.08, -0.72, -0.69, -0.67, 0.69, 0.72, 0.74) {
+			if (check_finger(information, 2, 0.05, 0.05, 0.05, -0.67, -0.63, -0.60, 0.74, 0.77, 0.80) {
+				if (check_finger(information, 3, 0.05, 0.19, 0.18, 0.64, 0.96, 0.74, 0.77, -0.23, -0.64) {
+					if(check_finger(information, 4, 0.17, 0.45, 0.41, 0.57, 0.88, 0.69, 0.80, -0.17, -0.59) {
+
+					return 'U';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//V
+	if (check_finger(information, 0, 0.22, -0.39, -0.97, -0.39, -0.23, 0.26, 0.89, 0.89, -0.03) {
+		if (check_finger(information, 1, 0.23, 0.23, 0.23, -0.89, -0.86, -0.83, 0.40, 0.45, 0.50) {
+			if (check_finger(information, 2, -0.35, -0.34, -0.34, -0.84, -0.83, -0.80, 0.41, 0.45, 0.48) {
+				if (check_finger(information, 3, 0.19, 0.34, 0.32, 0.49, 0.93, 0.91, 0.85, 0.12, -0.26) {
+					if(check_finger(information, 4, 0.30, 0.54, 0.52, 0.40, 0.83, 0.83, 0.86, 0.15, -0.22) {
+
+					return 'V';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//W
+	if (check_finger(information, 0, 0.09, -0.25, -0.61, 0.18, 0.32, 0.42, 0.98, 0.91, 0.67) {
+		if (check_finger(information, 1, 0.34, 0.36, 0.38, -0.53, -0.47, -0.42, 0.77, 0.80, 0.83) {
+			if (check_finger(information, 2, -0.01, 0.00, 0.00, -0.59, -0.57, -0.55, 0.81, 0.82, 0.84) {
+				if (check_finger(information, 3, -0.32, -0.30, -0.28, -0.38, -0.30, -0.22, 0.87, 0.91, 0.93) {
+					if(check_finger(information, 4, 0.19, 0.47, 0.48, 0.57, 0.88, 0.76, 0.80, 0.07, -0.42) {
+
+					return 'W';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//X
+	if (check_finger(information, 0, 0.30, -0.36, -0.92, 0.17, 0.32, 0.30, 0.94, 0.87, 0.24) {
+		if (check_finger(information, 1, 0.09, -0.02, -0.10, -0.21, 0.78, 0.39, 0.21, -0.67, -0.90) {
+			if (check_finger(information, 2, 0.06, 0.17, 0.17, 0.98, 0.73, 0.39, 0.21, -0.66, -0.90) {
+				if (check_finger(information, 3, 0.13, 0.31, 0.31, 0.98, 0.67, 0.34, 0.17, -0.67, -0.89) {
+					if(check_finger(information, 4, 0.22, 0.55, 0.54, 0.93, 0.65, 0.34, 0.30, -0.52, -0.77) {
+
+					return 'X';
+				
+					}
+				}
+			}
+		}
+	}
+
+
+	//Y
+	if (check_finger(information, 0, 0.58, 0.52, 0.63, -0.68, -0.70, -0.66, 0.45, 0.49, 0.41) {
+		if (check_finger(information, 1, -0.08, 0.04, 0.35, 0.98, 0.72, 0.93, -0.17, -0.69) {
+			if (check_finger(information, 2, 0.07, 0.21, 0.16, 0.35, 0.96, 0.70, 0.93, -0.18, -0.70) {
+				if (check_finger(information, 3, 0.09, 0.41, 0.34, 0.27, 0.91, 0.69, 0.96, -0.09, -0.64) {
+					if(check_finger(information, 4, -0.70, -0.62, -0.55, -0.45, -0.38, -0.33, 0.56, 0.69, 0.77) {
+
+					return 'Y';
+				
+					}
+				}
+			}
+		}
+	}
+
+	//TODO Z somehow...
 
     return ' ';
 
