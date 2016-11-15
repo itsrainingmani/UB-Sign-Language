@@ -162,7 +162,7 @@ float distanceBetweenFingers(float information[5][4][3], int finger1, int finger
 bool in_bounds(float information[5][4][3], int finger, int bone, int axis, float target) {
  
     float min, max;
-    float range = 0.30;
+    float range = 0.55;
     
     if ((target+range) > 1.0) {
         
@@ -244,18 +244,16 @@ bool check_finger(float information[5][4][3], int finger, float bone1x, float bo
 
 }
 
-
-//TODO Change all to upper case
 //Returns the char of a signed letter that is displayed. This is done stupidly.
 //Also this is done with the LeapMotion mounted on the table, not as a webcam.
 char whichLetter(float information[5][4][3]) {
 
 	//A
-	if (check_finger(information, 0, 0.49, 0.53, -0.04, -0.80, -0.78, -0.84, 0.36, 0.34, 0.53) {
-		if (check_finger(information, 1, 0.01, -0.08, -0.07, 0.00, 0.99, 0.84, 0.99, 0.06, -0.53) {
-			if (check_finger(information, 2, 0.18, 0.01, -0.09, 0.00, 0.99, 0.82, 0.98, 0.04, -0.55) {
-				if (check_finger(information, 3, 0.21, 0.19, 0.03, -0.10, 0.97, 0.88, 0.97, 0.13, -0.48) {
-					if(check_finger(information, 4, 0.30, 0.52, 0.25, -0.20, 0.85, 0.83, 0.93, 0.08, -0.50) {
+	if (check_finger(information, 0, 0.49, 0.53, -0.04, -0.80, -0.78, -0.84, 0.36, 0.34, 0.53)) {
+		if (check_finger(information, 1, 0.01, -0.08, -0.07, 0.00, 0.99, 0.84, 0.99, 0.06, -0.53)) {
+			if (check_finger(information, 2, 0.18, 0.01, -0.09, 0.00, 0.99, 0.82, 0.98, 0.04, -0.55)) {
+				if (check_finger(information, 3, 0.21, 0.19, 0.03, -0.10, 0.97, 0.88, 0.97, 0.13, -0.48)) {
+					if(check_finger(information, 4, 0.30, 0.52, 0.25, -0.20, 0.85, 0.83, 0.93, 0.08, -0.50)) {
 
 					return 'A';
 				
@@ -267,11 +265,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//B
-	if (check_finger(information, 0, 0.52, -0.17, -0.86, -0.33, -0.15, 0.18, 0.79, 0.98, 0.48) {
-		if (check_finger(information, 1, 0.01, 0.00, -0.01, -0.75, -0.71, -0.67, 0.66, 0.71, 0.75) {
-			if (check_finger(information, 2, -0.04, -0.04, -0.04, -0.72, -0.68, -0.64, 0.69, 0.73, 0.77) {
-				if (check_finger(information, 3, -0.08, -0.07, -0.06, -0.70, -0.65, -0.60, 0.71, 0.76, 0.80) {
-					if(check_finger(information, 4, -0.07, -0.05, -0.03, -0.73, -0.68, -0.62, 0.68, 0.74, 0.79) {
+	if (check_finger(information, 0, 0.52, -0.17, -0.86, -0.33, -0.15, 0.18, 0.79, 0.98, 0.48)) {
+		if (check_finger(information, 1, 0.01, 0.00, -0.01, -0.75, -0.71, -0.67, 0.66, 0.71, 0.75)) {
+			if (check_finger(information, 2, -0.04, -0.04, -0.04, -0.72, -0.68, -0.64, 0.69, 0.73, 0.77)) {
+				if (check_finger(information, 3, -0.08, -0.07, -0.06, -0.70, -0.65, -0.60, 0.71, 0.76, 0.80)) {
+					if(check_finger(information, 4, -0.07, -0.05, -0.03, -0.73, -0.68, -0.62, 0.68, 0.74, 0.79)) {
 
 					return 'B';
 				
@@ -283,11 +281,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//C
-	if (check_finger(information, 0, 0.90, 0.90, 0.91, -0.41, -0.42, -0.41, 0.09, 0.15, 0.00) {
-		if (check_finger(information, 1, 0.76, 0.78, 0.80, -0.64, -0.60, -0.58, 0.15, 0.16, 0.17) {
-			if (check_finger(information, 2, 0.76, 0.78, 0.79, -0.60, -0.58, -0.56, 0.24, 0.24, 0.24) {
-				if (check_finger(information, 3, 0.80, 0.82, 0.83, -0.60, -0.57, -0.55, 0.06, 0.06, 0.06) {
-					if(check_finger(information, 4, 0.76, 0.78, 0.80, -0.65, -0.62, 0.60, -0.02, -0.03, -0.03) {
+	if (check_finger(information, 0, 0.76, 0.77, 0.77, -0.64, -0.63, -0.63, 0.09, 0.11, 0.10)) {
+		if (check_finger(information, 1, 0.63, 0.66, 0.68, -0.67, -0.64, -0.62, 0.39, 0.38, 0.37)) {
+			if (check_finger(information, 2, 0.69, 0.72, 0.74, -0.64, -0.62, -0.60, 0.34, 0.32, 0.30)) {
+				if (check_finger(information, 3, 0.66, 0.70, 0.73, -0.67, -0.65, -0.62, 0.33, 0.30, 0.28)) {
+					if(check_finger(information, 4, 0.65, 0.70, 0.73, -0.65, -0.62, -0.61, 0.39, 0.35, 0.32)) {
 
 					return 'C';
 				
@@ -299,11 +297,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//D
-	if (check_finger(information, 0, 0.49, -0.06, -0.71, -0.55, -0.46, -0.11, 0.67, 0.89, 0.70) {
-		if (check_finger(information, 1, 0.10, 0.07, 0.01, -0.88, -0.36, 0.28, 0.46, 0.93, 0.96) {
-			if (check_finger(information, 2, 0.14, -0.08, -0.15, 0.71, 0.80, 0.33, 0.69, -0.61, -0.94) {
-				if (check_finger(information, 3, 0.19, 0.08, -0.04, 0.67, 0.80, 0.33, 0.71, -0.60, -0.94) {
-					if(check_finger(information, 4, 0.31, 0.37, 0.15, 0.58,  0.75, 0.34, 0.76, -0.55, -0.93) {
+	if (check_finger(information, 0, 0.35, -0.24, -0.37, -0.84, -0.75, -0.69, 0.41, 0.61, 0.62)) {
+		if (check_finger(information, 1, 0.03, 0.03, 0.03, -0.93, -0.88, -0.83, 0.37, 0.48, 0.55)) {
+			if (check_finger(information, 2, 0.17, 0.15, 0.05, 0.19, 0.99, 0.82, 0.97, -0.03, -0.57)) {
+				if (check_finger(information, 3, 0.22, 0.34, 0.20, 0.15, 0.94, 0.82, 0.96, 0.00, -0.53)) {
+					if(check_finger(information, 4, 0.33, 0.51, 0.30, 0.03, 0.86, 0.81, 0.94, 0.01, -0.50)) {
 
 					return 'D';
 				
@@ -313,13 +311,12 @@ char whichLetter(float information[5][4][3]) {
 		}
 	}
 
-
 	//E
-	if (check_finger(information, 0, 0.28, -0.37, -0.71, -0.36, -0.21, -0.07, 0.89, 0.90, 0.70) {
-		if (check_finger(information, 1, 0.06, -0.04, -0.08, -0.69, 0.58, 0.98, 0.72, 0.82, -0.19) {
-			if (check_finger(information, 2, 0.04, 0.12, 0.02, -0.69, 0.60, 0.97, 0.72, 0.79, -0.25) {
-				if (check_finger(information, 3, 0.15, 0.22, 0.05, -0.57, 0.57, 0.99, 0.80, 0.78, -0.02) {
-					if(check_finger(information, 4, 0.19, 0.38, 0.18, -0.66, 0.44, 0.97, 0.72, 0.81, 0.11) {
+	if (check_finger(information, 0, 0.28, -0.37, -0.71, -0.36, -0.21, -0.07, 0.89, 0.90, 0.70)) {
+		if (check_finger(information, 1, 0.06, -0.04, -0.08, -0.69, 0.58, 0.98, 0.72, 0.82, -0.19)) {
+			if (check_finger(information, 2, 0.04, 0.12, 0.02, -0.69, 0.60, 0.97, 0.72, 0.79, -0.25)) {
+				if (check_finger(information, 3, 0.15, 0.22, 0.05, -0.57, 0.57, 0.99, 0.80, 0.78, -0.02)) {
+					if(check_finger(information, 4, 0.19, 0.38, 0.18, -0.66, 0.44, 0.97, 0.72, 0.81, 0.11)) {
 
 					return 'E';
 				
@@ -331,11 +328,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//F
-	if (check_finger(information, 0, 0.53, -0.13, -0.09, -0.28, -0.15, -0.16, 0.79, 0.98, 0.98) {
-		if (check_finger(information, 1, 0.15, -0.27, -0.37, 0.59, 0.94, 0.60, 0.80, -0.20, -0.70) {
-			if (check_finger(information, 2, -0.01, -0.01, 0.00, -0.71, -0.68, -0.66, 0.71, 0.73, 0.76) {
-				if (check_finger(information, 3, 0.10, 0.11, 0.12, -0.73, -0.71, -0.69, 0.67, 0.70, 0.71) {
-					if(check_finger(information, 4, 0.07, 0.09, 0.11, -0.84, -0.82, -0.79, 0.53, 0.57, 0.60) {
+	if (check_finger(information, 0, 0.53, -0.13, -0.09, -0.28, -0.15, -0.16, 0.79, 0.98, 0.98)) {
+		if (check_finger(information, 1, 0.15, -0.27, -0.37, 0.59, 0.94, 0.60, 0.80, -0.20, -0.70)) {
+			if (check_finger(information, 2, -0.01, -0.01, 0.00, -0.71, -0.68, -0.66, 0.71, 0.73, 0.76)) {
+				if (check_finger(information, 3, 0.10, 0.11, 0.12, -0.73, -0.71, -0.69, 0.67, 0.70, 0.71)) {
+					if(check_finger(information, 4, 0.07, 0.09, 0.11, -0.84, -0.82, -0.79, 0.53, 0.57, 0.60)) {
 
 					return 'F';
 				
@@ -347,11 +344,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//G
-	if (check_finger(information, 0, 0.85, 0.93, 0.88, -0.44, -0.14, -0.36, 0.29, 0.35, 0.31) {
-		if (check_finger(information, 1, 0.98, 0.99, 0.98, -0.11, -0.02, 0.03, 0.19, -0.05, -0.20) {
-			if (check_finger(information, 2, 0.84, -0.31, -0.77, -0.01, 0.21, 0.22, -0.54, -0.92, -0.60) {
-				if (check_finger(information, 3, 0.82, -0.34, -0.79, -0.07, 0.05, 0.08, -0.56, -0.94, -0.61) {
-					if(check_finger(information, 4, 0.86, -0.27, -0.73, -0.21, -0.14, -0.02, -0.47, -0.95, -0.68) {
+	if (check_finger(information, 0, 0.85, 0.93, 0.88, -0.44, -0.14, -0.36, 0.29, 0.35, 0.31)) {
+		if (check_finger(information, 1, 0.98, 0.99, 0.98, -0.11, -0.02, 0.03, 0.19, -0.05, -0.20)) {
+			if (check_finger(information, 2, 0.84, -0.31, -0.77, -0.01, 0.21, 0.22, -0.54, -0.92, -0.60)) {
+				if (check_finger(information, 3, 0.82, -0.34, -0.79, -0.07, 0.05, 0.08, -0.56, -0.94, -0.61)) {
+					if(check_finger(information, 4, 0.86, -0.27, -0.73, -0.21, -0.14, -0.02, -0.47, -0.95, -0.68)) {
 
 					return 'G';
 				
@@ -363,11 +360,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//H
-	if (check_finger(information, 0, 0.92, 0.92, 0.33, -0.04, -0.08, 0.94, 0.38, 0.38, -0.04) {
-		if (check_finger(information, 1, 0.99, 0.99, 0.99, -0.03, -0.02, -0.02, -0.06, -0.08, -0.10) {
-			if (check_finger(information, 2, 0.99, 0.98, 0.98, -0.05, -0.05, -0.05, -0.12, -0.15, -0.17) {
-				if (check_finger(information, 3, 0.66, -0.72, -0.99, -0.08, -0.01, 0.04, -0.75, -0.70, -0.13) {
-					if(check_finger(information, 4, 0.71, -0.66, -0.98, -0.21, -0.30, -0.12, -0.67, -0.69, -0.18) {
+	if (check_finger(information, 0, 0.12, -0.17, -0.39, -0.08, -0.04, 0.00, 0.99, 0.98, 0.92)) {
+		if (check_finger(information, 1, 0.07, 0.05, 0.03, -0.18, 0.00, 0.12, 0.98, 0.99, 0.99)) {
+			if (check_finger(information, 2, 0.10, -0.03, -0.09, 0.70, 0.96, 0.68, 0.71, -0.28, -0.73)) {
+				if (check_finger(information, 3, 0.11, 0.13, 0.08, 0.70, 0.94, 0.66, 0.70, -0.30, -0.75)) {
+					if(check_finger(information, 4, 0.02, 0.08, 0.13, -0.21, 0.00, 0.15, 0.97, 0.99, 0.98)) {
 
 					return 'H';
 				
@@ -379,11 +376,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//I
-	if (check_finger(information, 0, 0.48, 0.31, -0.69, -0.30, -0.29, -0.10, 0.83, 0.90, 0.72) {
-		if (check_finger(information, 1, 0.05, -0.17, -0.24, 0.65, 0.98, 0.95, 0.77, 0.12, -0.19) {
-			if (check_finger(information, 2, 0.19, 0.03, -0.05, 0.67, 0.99, 0.97, 0.71, 0.07, -0.23) {
-				if (check_finger(information, 3, 0.25, 0.16, 0.09, 0.65, 0.98, 0.96, 0.71, 0.05, -0.27) {
-					if(check_finger(information, 4, -0.03, 0.17, 0.30, -0.75, 0.36, 0.04, 0.66, 0.92, 0.95) {
+	if (check_finger(information, 0, 0.31, -0.41, -0.85, -0.48, -0.39, -0.15, 0.82, 0.82, 0.50)) {
+		if (check_finger(information, 1, 0.08, -0.29, -0.31, 0.40, 0.93, 0.62, 0.91, -0.21, -0.72)) {
+			if (check_finger(information, 2, 0.21, -0.11, -0.22, 0.43, 0.96, 0.63, 0.88, -0.26, -0.74)) {
+				if (check_finger(information, 3, 0.27, 0.02, -0.13, 0.41, 0.96, 0.64, 0.87, -0.28, -0.76)) {
+					if(check_finger(information, 4, -0.18, -0.01, 0.14, -0.90, -0.70, -0.45, 0.41, 0.71, 0.88)) {
 
 					return 'I';
 				
@@ -393,15 +390,14 @@ char whichLetter(float information[5][4][3]) {
 		}
 	}
 
-
 	//TODO J somehow...
 
 	//K
-	if (check_finger(information, 0, 0.43, -0.20, -0.37, -0.52, -0.29, -0.19, 0.74, 0.94, 0.91) {
-		if (check_finger(information, 1, 0.06, 0.08, 0.10, -0.74, -0.58, -0.41, 0.67, 0.81, 0.91) {
-			if (check_finger(information, 2, 0.22, 0.24, 0.24, 0.24, 0.33, 0.38, 0.95, 0.92, 0.90) {
-				if (check_finger(information, 3, 0.33, 0.22, 0.06, 0.68, 0.86, 0.56, 0.65, -0.46, -0.83) {
-					if(check_finger(information, 4, 0.44, 0.43, 0.23, 0.57, 0.80, 0.57, 0.69, -0.41, -0.79) {
+	if (check_finger(information, 0, 0.43, -0.20, -0.37, -0.52, -0.29, -0.19, 0.74, 0.94, 0.91)) {
+		if (check_finger(information, 1, 0.06, 0.08, 0.10, -0.74, -0.58, -0.41, 0.67, 0.81, 0.91)) {
+			if (check_finger(information, 2, 0.22, 0.24, 0.24, 0.24, 0.33, 0.38, 0.95, 0.92, 0.90)) {
+				if (check_finger(information, 3, 0.33, 0.22, 0.06, 0.68, 0.86, 0.56, 0.65, -0.46, -0.83)) {
+					if(check_finger(information, 4, 0.44, 0.43, 0.23, 0.57, 0.80, 0.57, 0.69, -0.41, -0.79)) {
 
 					return 'K';
 				
@@ -413,11 +409,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//L
-	if (check_finger(information, 0, 0.73, 0.75, 0.90, -0.44, -0.42, -0.30, 0.53, 0.50, 0.30) {
-		if (check_finger(information, 1, 0.11, 0.06, 0.02, -0.78, -0.64, -0.50, 0.61, 0.77, 0.87) {
-			if (check_finger(information, 2, -0.02, -0.06, -0.06, 0.52, 0.99, 0.86, 0.86, -0.06, -0.49) {
-				if (check_finger(information, 3, 0.03, 0.11, 0.11, 0.50, 0.99, 0.86, 0.86, -0.06, -0.49) {
-					if(check_finger(information, 4, 0.15, 0.39, 0.37, 0.40, 0.92, 0.84, 0.90, 0.04, -0.41) {
+	if (check_finger(information, 0, 0.73, 0.75, 0.90, -0.44, -0.42, -0.30, 0.53, 0.50, 0.30)) {
+		if (check_finger(information, 1, 0.11, 0.06, 0.02, -0.78, -0.64, -0.50, 0.61, 0.77, 0.87)) {
+			if (check_finger(information, 2, -0.02, -0.06, -0.06, 0.52, 0.99, 0.86, 0.86, -0.06, -0.49)) {
+				if (check_finger(information, 3, 0.03, 0.11, 0.11, 0.50, 0.99, 0.86, 0.86, -0.06, -0.49)) {
+					if(check_finger(information, 4, 0.15, 0.39, 0.37, 0.40, 0.92, 0.84, 0.90, 0.04, -0.41)) {
 
 					return 'L';
 				
@@ -429,11 +425,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//M
-	if (check_finger(information, 0, 0.19, 0.00, -0.53, -0.18, -0.12, 0.06, 0.96, 0.99, 0.85) {
-		if (check_finger(information, 1, 0.05, 0.05, 0.05, -0.35, -0.27, -0.21, 0.94, 0.96, 0.97) {
-			if (check_finger(information, 2, 0.04, 0.06, 0.07, -0.32, -0.24, -0.18, 0.95, 0.97, 0.98) {
-				if (check_finger(information, 3, 0.11, 0.13, 0.15, -0.30, -0.21, -0.13, 0.95, 0.97, 0.98) {
-					if(check_finger(information, 4, 0.31, 0.40, 0.30, 0.42, 0.91, 0.86, 0.85, 0.08, -0.42) {
+	if (check_finger(information, 0, 0.29, -0.29, -0.84, 0.01, 0.14, 0.23, 0.96, 0.95, 0.49)) {
+		if (check_finger(information, 1, 0.02, 0.00, -0.02, 0.41, 0.67, 0.80, 0.91, 0.75, 0.60)) {
+			if (check_finger(information, 2, 0.04, 0.08, 0.10, 0.42, 0.69, 0.82, 0.91, 0.72, 0.57)) {
+				if (check_finger(information, 3, 0.13, 0.17, 0.18, 0.39, 0.62, 0.74, 0.91, 0.77, 0.64)) {
+					if(check_finger(information, 4, 0.27, 0.37, 0.38, 0.74, 0.93, 0.91, 0.61, 0.11, -0.16)) {
 
 					return 'M';
 				
@@ -443,13 +439,12 @@ char whichLetter(float information[5][4][3]) {
 		}
 	}
 
-
 	//N
-	if (check_finger(information, 0, 0.32, -0.33, -0.58, -0.39, -0.17, -0.04, 0.86, 0.93, 0.81) {
-		if (check_finger(information, 1, -0.02, -0.02, -0.01, -0.04, 0.02, 0.06, 0.99, 0.99, 0.99) {
-			if (check_finger(information, 2, 0.01, 0.03, 0.03, 0.00, 0.05, 0.09, 0.99, 0.99, 0.99) {
-				if (check_finger(information, 3, 0.24, 0.27, 0.23, 0.70, 0.96, 0.91, 0.67, -0.02, -0.33) {
-					if(check_finger(information, 4, 0.35, 0.53, 0.52, 0.63, 0.85, 0.80, 0.69, 0.01, -0.30) {
+	if (check_finger(information, 0, 0.40, -0.12, -0.70, -0.20, -0.05, 0.15, 0.90, 0.99, 0.70)) {
+		if (check_finger(information, 1, 0.07, 0.05, 0.03, 0.41, 0.57, 0.66, 0.91, 0.82, 0.75)) {
+			if (check_finger(information, 2, 0.07, 0.09, 0.11, 0.44, 0.61, 0.70, 0.89, 0.78, 0.70)) {
+				if (check_finger(information, 3, 0.19, 0.20, 0.14, 0.77, 0.94, 0.74, 0.61, -0.27, -0.65)) {
+					if(check_finger(information, 4, 0.24, 0.51, 0.50, 0.72, 0.83, 0.64, 0.65, -0.20, -0.58)) {
 
 					return 'N';
 				
@@ -461,11 +456,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//O
-	if (check_finger(information, 0, 0.55, 0.59, 0.32, -0.80, -0.66, -0.16, -0.24, 0.46, 0.93) {
-		if (check_finger(information, 1, 0.97, -0.07, -0.63, 0.18, 0.99, 0.77, 0.15, 0.03, -0.07) {
-			if (check_finger(information, 2, 0.98, -0.07, -0.64, 0.17, 0.98, 0.75, 0.01, -0.18, -0.17) {
-				if (check_finger(information, 3, 0.99, 0.01, -0.59, 0.09, 0.95, 0.77, -0.03, -0.31, -0.25) {
-					if(check_finger(information, 4, 0.99, 0.08, -0.53, -0.04, 0.79, 0.71, -0.09, -0.60, -0.47) {
+	if (check_finger(information, 0, 0.55, 0.59, 0.32, -0.80, -0.66, -0.16, -0.24, 0.46, 0.93)) {
+		if (check_finger(information, 1, 0.97, -0.07, -0.63, 0.18, 0.99, 0.77, 0.15, 0.03, -0.07)) {
+			if (check_finger(information, 2, 0.98, -0.07, -0.64, 0.17, 0.98, 0.75, 0.01, -0.18, -0.17)) {
+				if (check_finger(information, 3, 0.99, 0.01, -0.59, 0.09, 0.95, 0.77, -0.03, -0.31, -0.25)) {
+					if(check_finger(information, 4, 0.99, 0.08, -0.53, -0.04, 0.79, 0.71, -0.09, -0.60, -0.47)) {
 
 					return 'O';
 				
@@ -477,11 +472,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//P
-	if (check_finger(information, 0, 0.62, -0.02, -0.15, 0.14, 0.43, 0.46, 0.77, 0.90, 0.87) {
-		if (check_finger(information, 1, 0.12, 0.10, 0.09, 0.21, 0.31, 0.40, 0.97, 0.94, 0.91) {
-			if (check_finger(information, 2, 0.13, 0.09, 0.07, 0.97, 0.99, 0.95, 0.19, -0.13, -0.30) {
-				if (check_finger(information, 3, 0.14, 0.05, -0.03, 0.99, 0.22, -0.33, -0.09, -0.97, -0.95) {
-					if(check_finger(information, 4, 0.24, 0.31, 0.19, 0.97, 0.25, -0.29, -0.01, -0.92, -0.94) {
+	if (check_finger(information, 0, 0.62, -0.02, -0.15, 0.14, 0.43, 0.46, 0.77, 0.90, 0.87)) {
+		if (check_finger(information, 1, 0.12, 0.10, 0.09, 0.21, 0.31, 0.40, 0.97, 0.94, 0.91)) {
+			if (check_finger(information, 2, 0.13, 0.09, 0.07, 0.97, 0.99, 0.95, 0.19, -0.13, -0.30)) {
+				if (check_finger(information, 3, 0.14, 0.05, -0.03, 0.99, 0.22, -0.33, -0.09, -0.97, -0.95)) {
+					if(check_finger(information, 4, 0.24, 0.31, 0.19, 0.97, 0.25, -0.29, -0.01, -0.92, -0.94)) {
 
 					return 'P';
 				
@@ -493,11 +488,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//Q
-	if (check_finger(information, 0, 0.22, 0.14, -0.41, 0.89, 0.91, 0.87, 0.40, 0.40, 0.28) {
-		if (check_finger(information, 1, 0.06, 0.03, 0.02, 0.99, 0.93, 0.85, -0.06, -0.36, -0.52) {
-			if (check_finger(information, 2, 0.18, 0.07, -0.02, 0.89, -0.05, -0.54, -0.42, -0.99, -0.84) {
-				if (check_finger(information, 3, 0.21, 0.25, 0.15, 0.89, -0.04, -0.54, -0.39, -0.97, -0.83) {
-					if(check_finger(information, 4, 0.29, 0.50,  0.38, 0.91, 0.00, -0.50, -0.29, -0.87, -0.78) {
+	if (check_finger(information, 0, 0.22, 0.14, -0.41, 0.89, 0.91, 0.87, 0.40, 0.40, 0.28)) {
+		if (check_finger(information, 1, 0.06, 0.03, 0.02, 0.99, 0.93, 0.85, -0.06, -0.36, -0.52)) {
+			if (check_finger(information, 2, 0.18, 0.07, -0.02, 0.89, -0.05, -0.54, -0.42, -0.99, -0.84)) {
+				if (check_finger(information, 3, 0.21, 0.25, 0.15, 0.89, -0.04, -0.54, -0.39, -0.97, -0.83)) {
+					if(check_finger(information, 4, 0.29, 0.50,  0.38, 0.91, 0.00, -0.50, -0.29, -0.87, -0.78)) {
 
 					return 'Q';
 				
@@ -509,11 +504,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//R
-	if (check_finger(information, 0, 0.65, 0.39, 0.66, -0.49, -0.48, -0.49, 0.58, 0.79, 0.56) {
-		if (check_finger(information, 1, -0.03, -0.06, -0.08, 0.13, 0.32, 0.44, 0.99, 0.95, 0.89) {
-			if (check_finger(information, 2, 0.21, 0.19, 0.18, 0.08, 0.25, 0.36, 0.97, 0.95, 0.92) {
-				if (check_finger(information, 3, 0.09, 0.03, -0.01, 0.88, 0.78, 0.40, 0.46, -0.63, -0.92) {
-					if(check_finger(information, 4, 0.22, 0.28, 0.19, 0.82, 0.78, 0.43, 0.54, -0.56, -0.88) {
+	if (check_finger(information, 0, 0.55, 0.59, 0.36, -0.83, -0.81, -0.91, 0.09, 0.06, 0.21)) {
+		if (check_finger(information, 1, -0.07, -0.07, -0.06, -0.81, -0.79, -0.77, 0.58, 0.61, 0.64)) {
+			if (check_finger(information, 2, 0.20, 0.20, 0.21, -0.86, -0.84, -0.82, 0.48, 0.51, 0.53)) {
+				if (check_finger(information, 3, 0.26, 0.17, -0.01, 0.06, 0.98, 0.79, 0.96, -0.06, -0.62)) {
+					if(check_finger(information, 4, 0.36, 0.49, 0.19, -0.05, 0.87, 0.75, 0.93, -0.09, -0.63)) {
 
 					return 'R';
 				
@@ -525,11 +520,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//S
-	if (check_finger(information, 0, 0.23, -0.15, -0.72, -0.54, -0.49, -0.25, 0.81, 0.86, 0.65) {
-		if (check_finger(information, 1, 0.03, -0.20, -0.18, 0.38, 0.94, 0.54, 0.93, -0.30, -0.82) {
-			if (check_finger(information, 2, 0.19, -0.09, -0.19, 0.38, 0.95, 0.55, 0.90, -0.30, 0.81) {
-				if (check_finger(information, 3, 0.23, 0.03, -0.11, 0.33, 0.96, 0.59, 0.91, -0.27, -0.80) {
-					if(check_finger(information, 4, 0.31, 0.38, 0.12, 0.26, 0.88, 0.57, 0.91, -0.29, -0.81) {
+	if (check_finger(information, 0, 0.30, -0.18, -0.42, -0.75, -0.76, -0.69, 0.59, 0.63, 0.59)) {
+		if (check_finger(information, 1, 0.00, -0.35, -0.35, -0.07, 0.87, 0.91, 0.99, 0.35, -0.23)) {
+			if (check_finger(information, 2, 0.11, -0.09, -0.15, -0.06, 0.92, 0.96, 0.99, 0.36, -0.22)) {
+				if (check_finger(information, 3, 0.13, 0.07, -0.02, 0.10, 0.99, 0.76, 0.99, -0.08, -0.65)) {
+					if(check_finger(information, 4, 0.26, 0.33, 0.12, 0.00, 0.94, 0.78, 0.97, -0.05, -0.61)) {
 
 					return 'S';
 				
@@ -541,11 +536,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//T
-	if (check_finger(information, 0, 0.04, -0.21, -0.21, -0.31, -0.18, -0.18, 0.95, 0.96, 0.96) {
-		if (check_finger(information, 1, 0.24, -0.09, 0.22, 0.58, 0.84, 0.31, 0.78, -0.53, -0.92) {
-			if (check_finger(information, 2, 0.38, 0.05, -0.20, 0.52, 0.86, 0.36, 0.77, -0.51, -0.91) {
-				if (check_finger(information, 3, 0.43, 0.23, 0.02, 0.63, 0.85, 0.57, 0.65, -0.46, -0.83) {
-					if(check_finger(information, 4, 0.54, 0.44, 0.18, 0.50, 0.79, 0.56, 0.68, -0.43, -0.81) {
+	if (check_finger(information, 0, 0.53, -0.13, -0.51, -0.49, -0.33, -0.15, 0.70, 0.93, 0.85)) {
+		if (check_finger(information, 1, 0.09, 0.07, 0.05, -0.03, 0.16, 0.28, 0.99, 0.99, 0.96)) {
+			if (check_finger(information, 2, 0.11, 0.05, 0.01, 0.80, 0.98, 0.86, 0.59, -0.18, -0.50)) {
+				if (check_finger(information, 3, 0.18, 0.17, 0.13, 0.80, 0.97, 0.85, 0.58, -0.20, -0.51)) {
+					if(check_finger(information, 4, 0.29, 0.43, 0.40, 0.70, 0.90, 0.80, 0.65, -0.12, -0.44)) {
 
 					return 'T';
 				
@@ -557,11 +552,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//U
-	if (check_finger(information, 0, 0.28, -0.42, -0.88, -0.44, -0.31, -0.06, 0.86, 0.85, 0.49) {
-		if (check_finger(information, 1, -0.06, -0.07, -0.08, -0.72, -0.69, -0.67, 0.69, 0.72, 0.74) {
-			if (check_finger(information, 2, 0.05, 0.05, 0.05, -0.67, -0.63, -0.60, 0.74, 0.77, 0.80) {
-				if (check_finger(information, 3, 0.05, 0.19, 0.18, 0.64, 0.96, 0.74, 0.77, -0.23, -0.64) {
-					if(check_finger(information, 4, 0.17, 0.45, 0.41, 0.57, 0.88, 0.69, 0.80, -0.17, -0.59) {
+	if (check_finger(information, 0, 0.28, -0.42, -0.88, -0.44, -0.31, -0.06, 0.86, 0.85, 0.49)) {
+		if (check_finger(information, 1, -0.06, -0.07, -0.08, -0.72, -0.69, -0.67, 0.69, 0.72, 0.74)) {
+			if (check_finger(information, 2, 0.05, 0.05, 0.05, -0.67, -0.63, -0.60, 0.74, 0.77, 0.80)) {
+				if (check_finger(information, 3, 0.05, 0.19, 0.18, 0.64, 0.96, 0.74, 0.77, -0.23, -0.64)) {
+					if(check_finger(information, 4, 0.17, 0.45, 0.41, 0.57, 0.88, 0.69, 0.80, -0.17, -0.59)) {
 
 					return 'U';
 				
@@ -573,11 +568,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//V
-	if (check_finger(information, 0, 0.22, -0.39, -0.97, -0.39, -0.23, 0.26, 0.89, 0.89, -0.03) {
-		if (check_finger(information, 1, 0.23, 0.23, 0.23, -0.89, -0.86, -0.83, 0.40, 0.45, 0.50) {
-			if (check_finger(information, 2, -0.35, -0.34, -0.34, -0.84, -0.83, -0.80, 0.41, 0.45, 0.48) {
-				if (check_finger(information, 3, 0.19, 0.34, 0.32, 0.49, 0.93, 0.91, 0.85, 0.12, -0.26) {
-					if(check_finger(information, 4, 0.30, 0.54, 0.52, 0.40, 0.83, 0.83, 0.86, 0.15, -0.22) {
+	if (check_finger(information, 0, 0.09, -0.30, -0.78, 0.37, 0.48, 0.49, 0.92, 0.82, 0.40)) {
+		if (check_finger(information, 1, 0.25, 0.25, 0.25, -0.02, 0.03, 0.08, 0.97, 0.97, 0.96)) {
+			if (check_finger(information, 2, -0.35, -0.35, -0.34, 0.04, 0.08, 0.12, 0.94, 0.93, 0.93)) {
+				if (check_finger(information, 3, 0.11, 0.25, 0.30, 0.96, 0.96, 0.90, 0.25, -0.13, -0.32)) {
+					if(check_finger(information, 4, 0.25, 0.38, 0.42, 0.90, 0.92, 0.88, 0.35, -0.04, -0.23)) {
 
 					return 'V';
 				
@@ -587,13 +582,12 @@ char whichLetter(float information[5][4][3]) {
 		}
 	}
 
-
 	//W
-	if (check_finger(information, 0, 0.09, -0.25, -0.61, 0.18, 0.32, 0.42, 0.98, 0.91, 0.67) {
-		if (check_finger(information, 1, 0.34, 0.36, 0.38, -0.53, -0.47, -0.42, 0.77, 0.80, 0.83) {
-			if (check_finger(information, 2, -0.01, 0.00, 0.00, -0.59, -0.57, -0.55, 0.81, 0.82, 0.84) {
-				if (check_finger(information, 3, -0.32, -0.30, -0.28, -0.38, -0.30, -0.22, 0.87, 0.91, 0.93) {
-					if(check_finger(information, 4, 0.19, 0.47, 0.48, 0.57, 0.88, 0.76, 0.80, 0.07, -0.42) {
+	if (check_finger(information, 0, 0.34, -0.27, -0.82, -0.22, -0.08, 0.11, 0.91, 0.96, 0.57)) {
+		if (check_finger(information, 1, 0.36, 0.36, 0.36, -0.65, -0.61, -0.58, 0.67, 0.70, 0.73)) {
+			if (check_finger(information, 2, 0.07, 0.08, 0.08, -0.66, -0.62, -0.59, 0.75, 0.78, 0.80)) {
+				if (check_finger(information, 3, -0.25, -0.24, -0.23, -0.54, -0.46, -0.39, 0.80, 0.85, 0.89)) {
+					if(check_finger(information, 4, 0.21, 0.36, 0.31, 0.53, 0.93, 0.81, 0.82, -0.02, -0.50)) {
 
 					return 'W';
 				
@@ -605,11 +599,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//X
-	if (check_finger(information, 0, 0.30, -0.36, -0.92, 0.17, 0.32, 0.30, 0.94, 0.87, 0.24) {
-		if (check_finger(information, 1, 0.09, -0.02, -0.10, -0.21, 0.78, 0.39, 0.21, -0.67, -0.90) {
-			if (check_finger(information, 2, 0.06, 0.17, 0.17, 0.98, 0.73, 0.39, 0.21, -0.66, -0.90) {
-				if (check_finger(information, 3, 0.13, 0.31, 0.31, 0.98, 0.67, 0.34, 0.17, -0.67, -0.89) {
-					if(check_finger(information, 4, 0.22, 0.55, 0.54, 0.93, 0.65, 0.34, 0.30, -0.52, -0.77) {
+	if (check_finger(information, 0, 0.63, 0.55, 0.53, -0.61, -0.65, -0.65, 0.49, 0.53, 0.54)) {
+		if (check_finger(information, 1, 0.20, -0.20, -0.33, -0.76, 0.34, 0.93, 0.61, 0.92, 0.20)) {
+			if (check_finger(information, 2, -0.05, 0.02, 0.04, 0.30, 0.99, 0.73, 0.95, -0.16, -0.68)) {
+				if (check_finger(information, 3, 0.01, 0.14, 0.12, 0.27, 0.98, 0.74, 0.96, -0.13, -0.67)) {
+					if(check_finger(information, 4, 0.13, 0.44, 0.33, 0.18, 0.89, 0.71, 0.98, -0.08, -0.62)) {
 
 					return 'X';
 				
@@ -621,11 +615,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//Y
-	if (check_finger(information, 0, 0.58, 0.52, 0.63, -0.68, -0.70, -0.66, 0.45, 0.49, 0.41) {
-		if (check_finger(information, 1, -0.08, 0.04, 0.35, 0.98, 0.72, 0.93, -0.17, -0.69) {
-			if (check_finger(information, 2, 0.07, 0.21, 0.16, 0.35, 0.96, 0.70, 0.93, -0.18, -0.70) {
-				if (check_finger(information, 3, 0.09, 0.41, 0.34, 0.27, 0.91, 0.69, 0.96, -0.09, -0.64) {
-					if(check_finger(information, 4, -0.70, -0.62, -0.55, -0.45, -0.38, -0.33, 0.56, 0.69, 0.77) {
+	if (check_finger(information, 0, 0.58, 0.52, 0.63, -0.68, -0.70, -0.66, 0.45, 0.49, 0.41)) {
+		if (check_finger(information, 1, -0.08, -0.01, 0.04, 0.35, 0.98, 0.72, 0.93, -0.17, -0.69)) {
+			if (check_finger(information, 2, 0.07, 0.21, 0.16, 0.35, 0.96, 0.70, 0.93, -0.18, -0.70)) {
+				if (check_finger(information, 3, 0.09, 0.41, 0.34, 0.27, 0.91, 0.69, 0.96, -0.09, -0.64)) {
+					if(check_finger(information, 4, -0.70, -0.62, -0.55, -0.45, -0.38, -0.33, 0.56, 0.69, 0.77)) {
 
 					return 'Y';
 				
