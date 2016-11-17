@@ -788,6 +788,8 @@ int main(int argc, char * argv[]){
     Leap::Controller controller;
     controller.addListener(listener);
 
+    system("Visualizer");
+	
 //    QLabel *charLabel = new QLabel();
 //    QLabel *imgLabel= new QLabel();
 
