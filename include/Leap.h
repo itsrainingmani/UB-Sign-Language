@@ -51,7 +51,7 @@ bool isLetterV(float[5][4][3], float[5][3]);
 bool isLetterW(float[5][4][3], float[5][3]);
 bool isLetterR(float[5][4][3], float[5][3]);
 bool isLetterH(float[5][4][3], float[5][3], float[3]);
-
+char game(float[5][4][3]);
 // Define Leap export macros
 #if defined(_MSC_VER) // Visual C++
 #if LEAP_API_INTERNAL
