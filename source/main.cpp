@@ -222,19 +222,19 @@ bool check_finger(float information[5][4][3], int finger, float bone1x, float bo
 	bool check2 = false;
 	bool check3 = false;
 
-	if (bone_check(information, finger, 1, bone1x, bone1y, bone1z)) {
+	if (check_bone(information, finger, 1, bone1x, bone1y, bone1z)) {
 
 		check1 = true;
 	
 	}
 
-	if (bone_check(information, finger, 2, bone2x, bone2y, bone2z)) {
+	if (check_bone(information, finger, 2, bone2x, bone2y, bone2z)) {
 
 		check2 = true;
 
 	}
 
-	if (bone_check(information, finger, 3, bone3x, bone3y, bone3z)) {
+	if (check_bone(information, finger, 3, bone3x, bone3y, bone3z)) {
 
 		check3 = true;
 
