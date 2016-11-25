@@ -297,11 +297,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//D
-	if (check_finger(information, 0, 0.35, -0.24, -0.37, -0.84, -0.75, -0.69, 0.41, 0.61, 0.62)) {
-		if (check_finger(information, 1, 0.03, 0.03, 0.03, -0.93, -0.88, -0.83, 0.37, 0.48, 0.55)) {
-			if (check_finger(information, 2, 0.17, 0.15, 0.05, 0.19, 0.99, 0.82, 0.97, -0.03, -0.57)) {
-				if (check_finger(information, 3, 0.22, 0.34, 0.20, 0.15, 0.94, 0.82, 0.96, 0.00, -0.53)) {
-					if(check_finger(information, 4, 0.33, 0.51, 0.30, 0.03, 0.86, 0.81, 0.94, 0.01, -0.50)) {
+	if (check_finger(information, 0, 0.33, -0.06, -0.90, -0.72, -0.69, -0.12, 0.62, 0.72, 0.41)) {
+		if (check_finger(information, 1, 0.02, 0.00, -0.01, -0.94, -0.88, -0.81, 0.33, 0.47, 0.58)) {
+			if (check_finger(information, 2, 0.08, 0.08, 0.03, 0.35, 0.97, 0.69, 0.93, -0.21, -0.72)) {
+				if (check_finger(information, 3, 0.13, 0.22, 0.12, 0.32, 0.96, 0.69, 0.94, -0.19, -0.71)) {
+					if(check_finger(information, 4, 0.25, 0.41, 0.24, 0.21, 0.90, 0.71, 0.95, -0.14, -0.66)) {
 
 					return 'D';
 				
@@ -390,7 +390,20 @@ char whichLetter(float information[5][4][3]) {
 		}
 	}
 
-	//TODO J somehow...
+	//J
+	if (check_finger(information, 0, -0.08, -0.37, -0.77, 0.32, 0.36, 0.35, 0.95, 0.86, 0.54)) {
+		if (check_finger(information, 1, 0.00, -0.02, -0.02, 0.88, 0.55, -0.15, 0.47, -0.84, -0.99)) {
+			if (check_finger(information, 2, 0.18, 0.02, -0.10, 0.86, 0.56, -0.12, 0.49, -0.82, -0.98)) {
+				if (check_finger(information, 3, 0.17, 0.20, 0.04, 0.82, 0.59, -0.09, 0.55, -0.78, -0.99)) {
+					if(check_finger(information, 4, -0.13, -0.05, 0.01, -0.03, 0.15, 0.28, 0.99, 0.99, 0.96)) {
+
+					return 'J';
+				
+					}
+				}
+			}
+		}
+	}
 
 	//K
 	if (check_finger(information, 0, 0.43, -0.20, -0.37, -0.52, -0.29, -0.19, 0.74, 0.94, 0.91)) {
@@ -488,11 +501,11 @@ char whichLetter(float information[5][4][3]) {
 
 
 	//Q
-	if (check_finger(information, 0, 0.22, 0.14, -0.41, 0.89, 0.91, 0.87, 0.40, 0.40, 0.28)) {
-		if (check_finger(information, 1, 0.06, 0.03, 0.02, 0.99, 0.93, 0.85, -0.06, -0.36, -0.52)) {
-			if (check_finger(information, 2, 0.18, 0.07, -0.02, 0.89, -0.05, -0.54, -0.42, -0.99, -0.84)) {
-				if (check_finger(information, 3, 0.21, 0.25, 0.15, 0.89, -0.04, -0.54, -0.39, -0.97, -0.83)) {
-					if(check_finger(information, 4, 0.29, 0.50,  0.38, 0.91, 0.00, -0.50, -0.29, -0.87, -0.78)) {
+	if (check_finger(information, 0, -0.03, 0.02, 0.37, 0.91, 0.91, 0.79, 0.41, 0.42, 0.48)) {
+		if (check_finger(information, 1, 0.04, 0.03, 0.02, 0.97, 0.99, 0.99, 0.22, -0.01, -0.16)) {
+			if (check_finger(information, 2, 0.10, 0.18, 0.09, 0.93, -0.25, -0.82, -0.35, -0.95, -0.57)) {
+				if (check_finger(information, 3, 0.12, 0.34, 0.21, 0.94, -0.24, -0.81, -0.33, -0.91, -0.54)) {
+					if(check_finger(information, 4, 0.12, 0.68, 0.49, 0.96, -0.16, -0.76, -0.27, -0.72, -0.43)) {
 
 					return 'Q';
 				
@@ -629,7 +642,22 @@ char whichLetter(float information[5][4][3]) {
 		}
 	}
 
-	//TODO Z somehow...
+	//Z
+	if (check_finger(information, 0, 0.69, 0.68, 0.90, -0.17, -0.17, -0.30, 0.71, 0.71, 0.32)) {
+		if (check_finger(information, 1, 0.01, 0.00, -0.01, 0.00, 0.15, 0.27, 0.99, 0.99, 0.96)) {
+			if (check_finger(information, 2, 0.10, -0.05, -0.10, 0.99, 0.20, -0.42, 0.11, -0.98, -0.90)) {
+				if (check_finger(information, 3, 0.17, 0.03, -0.07, 0.98, 0.16, -0.43, 0.08, -0.99, -0.93)) {
+					if(check_finger(information, 4, 0.30, 0.19, -0.01, 0.94, 0.22, -0.36, 0.18, -0.96, -0.93)) {
+
+					return 'Z';
+				
+					}
+				}
+			}
+		}
+	}
+
+	
 
     return ' ';
 
@@ -790,8 +818,6 @@ int main(int argc, char * argv[]){
     Leap::Controller controller;
     controller.addListener(listener);
 
-    system("Visualizer");
-	
 //    QLabel *charLabel = new QLabel();
 //    QLabel *imgLabel= new QLabel();
 
