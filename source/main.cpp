@@ -9,7 +9,7 @@
 #include <cctype>
 
 class SampleListener : public QObject, public Leap::Listener {
-    QLabel *imglbl;
+//    QLabel *imglbl;
     QLabel *chrlbl;
 public:
     virtual void onInit(const Leap::Controller&);
@@ -24,8 +24,8 @@ public:
     virtual void onServiceDisconnect(const Leap::Controller&);
 //    virtual void onImages(const Leap::Controller& controller);
 
-    void setLabels(QLabel* i, QLabel* c){
-        imglbl = i;
+    void setLabels(QLabel* c){
+//        imglbl = i;
         chrlbl = c;
     }
 };
@@ -670,16 +670,16 @@ void SampleListener::onFrame(const Leap::Controller& controller) {
     //Recieve information about the current frame.
     const Leap::Frame frame = controller.frame();
 
-    Leap::ImageList images = controller.images();
-    Leap::Image image = images[0];
+//    Leap::ImageList images = controller.images();
+//    Leap::Image image = images[0];
 
-    const unsigned char* image_buffer = image.data();
-    int width = image.width();
-    int height = image.height();
+//    const unsigned char* image_buffer = image.data();
+//    int width = image.width();
+//    int height = image.height();
 //    int bpp = image.bytesPerPixel();
-    QImage img((uchar *) image_buffer, width, height, QImage::Format_Grayscale8);
-    QPixmap pxmap = QPixmap::fromImage(img);
-    imglbl->setPixmap(pxmap);
+//    QImage img((uchar *) image_buffer, width, height, QImage::Format_Grayscale8);
+//    QPixmap pxmap = QPixmap::fromImage(img);
+//    imglbl->setPixmap(pxmap);
 
 //Print out frame info, including time, number of hands, and the ID of the frame.
 //std::cout << "Leap::Frame id: " << frame.id()
@@ -771,7 +771,7 @@ std::cout << std::string(6, ' ') <<  boneNames[boneType]
     //open_or_closed_vector = Leap::Vector::zero();
     //printBoneInformation(bone_information);
 
-    char finally = toupper(whichLetter(bone_information));
+    char finally = toupper(game(bone_information));
     chrlbl->setText(QString(finally));
 //    std::cout << std::endl << "The presented letter: " << finally << std::endl << std::endl;
     }
@@ -807,44 +807,43 @@ void SampleListener::onServiceDisconnect(const Leap::Controller&) {
   std::cout << "Service Disconnected" << std::endl;
 }
 
+char game(float bone_information[5][4][3]){
+        std::cout << "Would you like to play a game?" << std::endl;
+        std::cout << "Well, yes or no, we will play a game" << std::endl;
+        std::cout << "For now, please press the required CAPITAL key" << std::endl;
+        srand(time(NULL));
+
+        int seed = rand() % 26;
+        char test = seed + 65;
+        std::cout << "Please Make a "  << test << std::endl;
+        char input = whichLetter(bone_information);
+//        if(input == '\n'){
+//            input = getchar();
+//        }
+        if(test == input){
+            std::cout << "Yay, you did it" << std::endl;
+            return input;
+        }
+        else{
+            std::cout << "Better luck next time champ" << std::endl;
+            return input;
+        }
+}
+
 int main(int argc, char * argv[]){
     QApplication a(argc, argv);
     LeapGui lg;
-    QLabel *imglbl = lg.findChild<QLabel *>("imgLabel");
+//    QLabel *imglbl = lg.findChild<QLabel *>("imgLabel");
     QLabel *chrlbl = lg.findChild<QLabel *>("charLabel");
 
     SampleListener listener;
-    listener.setLabels(imglbl, chrlbl);
+    listener.setLabels(chrlbl);
     Leap::Controller controller;
     controller.addListener(listener);
-
-
-//    QLabel *charLabel = new QLabel();
-//    QLabel *imgLabel= new QLabel();
-
-//    imgLabel->setMinimumSize(400, 400);
-//    charLabel->setMinimumSize(200, 200);
-
-//    charLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-//    imgLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-
-//    charLabel->setText("Char");
-//    QFont font = charLabel->font();
-//    font.setPointSize(72);
-//    font.setBold(true);
-//    charLabel->setFont(font);
-//    charLabel->setAlignment(Qt::AlignCenter);
-
-//    imgLabel->show();
-//    charLabel->show();
-
-//    charLabel->connect(&listener, SIGNAL(objectNameChanged(QString)),
-//                          SLOT(setText(QString)));
 
     lg.show();
 
     int rc = a.exec();
     controller.removeListener(listener);
-
     return rc;
 }

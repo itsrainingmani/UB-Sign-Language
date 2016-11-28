@@ -49,9 +49,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../source/main.cpp \
-		../source/leapgui.cpp moc_leapgui.cpp
+		../source/leapgui.cpp qrc_buttons.cpp \
+		moc_leapgui.cpp
 OBJECTS       = main.o \
 		leapgui.o \
+		qrc_buttons.o \
 		moc_leapgui.o
 DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/common/unix.conf \
@@ -184,6 +186,7 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		../source/.qmake.stash \
 		../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -344,6 +347,7 @@ Makefile: ../source/gui.pro ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf 
 		../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -361,6 +365,7 @@ Makefile: ../source/gui.pro ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf 
 		../../../Qt/5.7/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/lex.prf \
 		../source/gui.pro \
+		../source/buttons.qrc \
 		../../../Qt/5.7/gcc_64/lib/libQt5Widgets.prl \
 		../../../Qt/5.7/gcc_64/lib/libQt5Gui.prl \
 		../../../Qt/5.7/gcc_64/lib/libQt5Core.prl
@@ -496,6 +501,7 @@ Makefile: ../source/gui.pro ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf 
 ../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf:
@@ -513,6 +519,7 @@ Makefile: ../source/gui.pro ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf 
 ../../../Qt/5.7/gcc_64/mkspecs/features/yacc.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/lex.prf:
 ../source/gui.pro:
+../source/buttons.qrc:
 ../../../Qt/5.7/gcc_64/lib/libQt5Widgets.prl:
 ../../../Qt/5.7/gcc_64/lib/libQt5Gui.prl:
 ../../../Qt/5.7/gcc_64/lib/libQt5Core.prl:
@@ -530,6 +537,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../source/buttons.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../source/leapgui.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../source/main.cpp ../source/leapgui.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../source/leapgui.ui $(DISTDIR)/
@@ -556,8 +564,15 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_buttons.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_buttons.cpp
+qrc_buttons.cpp: ../source/buttons.qrc \
+		../../../Qt/5.7/gcc_64/bin/rcc \
+		../source/unp.png \
+		../source/pr.png
+	/home/money/Qt/5.7/gcc_64/bin/rcc -name buttons ../source/buttons.qrc -o qrc_buttons.cpp
+
 compiler_moc_header_make_all: moc_leapgui.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_leapgui.cpp
@@ -611,6 +626,7 @@ moc_leapgui.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/5.7/gcc_64/include/QtCore/qmetatype.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../include/vector \
 		../../../Qt/5.7/gcc_64/include/QtCore/qobject_impl.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qmargins.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qpaintdevice.h \
@@ -677,7 +693,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -732,6 +748,7 @@ main.o: ../source/main.cpp ../source/leapgui.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qmetatype.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../include/vector \
 		../../../Qt/5.7/gcc_64/include/QtCore/qobject_impl.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qmargins.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qpaintdevice.h \
@@ -844,6 +861,7 @@ leapgui.o: ../source/leapgui.cpp ../source/leapgui.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qmetatype.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../include/vector \
 		../../../Qt/5.7/gcc_64/include/QtCore/qobject_impl.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qmargins.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qpaintdevice.h \
@@ -891,8 +909,58 @@ leapgui.o: ../source/leapgui.cpp ../source/leapgui.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_leapgui.h
+		ui_leapgui.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.7/gcc_64/include/QtConcurrent/QtConcurrentRun \
+		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentrun.h \
+		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentcompilertest.h \
+		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrent_global.h \
+		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentrunbase.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfuture.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfutureinterface.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qrunnable.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qexception.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qresultstore.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qthreadpool.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qthread.h \
+		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentstoredfunctioncall.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o leapgui.o ../source/leapgui.cpp
+
+qrc_buttons.o: qrc_buttons.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_buttons.o qrc_buttons.cpp
 
 moc_leapgui.o: moc_leapgui.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_leapgui.o moc_leapgui.cpp

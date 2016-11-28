@@ -2,9 +2,16 @@
 #include "ui_leapgui.h"
 #include<QtConcurrent/QtConcurrentRun>
 
-void aFunction(){
-    system("Visualizer");
+int flag=0;
+
+void open(){
+    system("Visualizer &");
 }
+
+void close(){
+    system("pkill Visualizer");
+}
+
 LeapGui::LeapGui(QWidget *parent) :
     QWidget(parent),
 
@@ -20,9 +27,14 @@ LeapGui::~LeapGui()
 
 void LeapGui::on_upLeft_clicked()
 {
-
-    extern void aFunction();
-    QFuture<void> future = QtConcurrent::run(aFunction);
+    if(flag==0){
+        open();
+        flag=1;
+    }
+    else if (flag == 1){
+        flag = 0;
+        close();
+    }
 }
 
 
