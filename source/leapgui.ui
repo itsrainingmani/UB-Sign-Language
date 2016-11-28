@@ -6,33 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>604</width>
-    <height>376</height>
+    <width>121</width>
+    <height>253</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LeapGui</string>
   </property>
-  <widget class="QLabel" name="imgLabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>471</width>
-     <height>351</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Box</enum>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QLabel" name="charLabel">
    <property name="geometry">
     <rect>
-     <x>500</x>
+     <x>10</x>
      <y>10</y>
      <width>91</width>
      <height>91</height>

@@ -184,6 +184,7 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		../source/.qmake.stash \
 		../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -344,6 +345,7 @@ Makefile: ../source/gui.pro ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf 
 		../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -496,6 +498,7 @@ Makefile: ../source/gui.pro ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf 
 ../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf:
@@ -891,7 +894,41 @@ leapgui.o: ../source/leapgui.cpp ../source/leapgui.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_leapgui.h
+		ui_leapgui.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o leapgui.o ../source/leapgui.cpp
 
 moc_leapgui.o: moc_leapgui.cpp 

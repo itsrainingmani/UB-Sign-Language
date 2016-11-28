@@ -22,21 +22,16 @@ QT_BEGIN_NAMESPACE
 class Ui_LeapGui
 {
 public:
-    QLabel *imgLabel;
     QLabel *charLabel;
 
     void setupUi(QWidget *LeapGui)
     {
         if (LeapGui->objectName().isEmpty())
             LeapGui->setObjectName(QStringLiteral("LeapGui"));
-        LeapGui->resize(604, 376);
-        imgLabel = new QLabel(LeapGui);
-        imgLabel->setObjectName(QStringLiteral("imgLabel"));
-        imgLabel->setGeometry(QRect(10, 10, 471, 351));
-        imgLabel->setFrameShape(QFrame::Box);
+        LeapGui->resize(121, 253);
         charLabel = new QLabel(LeapGui);
         charLabel->setObjectName(QStringLiteral("charLabel"));
-        charLabel->setGeometry(QRect(500, 10, 91, 91));
+        charLabel->setGeometry(QRect(10, 10, 91, 91));
         QFont font;
         font.setFamily(QStringLiteral("Liberation Mono"));
         font.setPointSize(60);
@@ -53,7 +48,6 @@ public:
     void retranslateUi(QWidget *LeapGui)
     {
         LeapGui->setWindowTitle(QApplication::translate("LeapGui", "LeapGui", 0));
-        imgLabel->setText(QString());
         charLabel->setText(QString());
     } // retranslateUi
 
