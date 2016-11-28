@@ -28,15 +28,10 @@ LeapGui::~LeapGui()
 
 void LeapGui::on_upLeft_clicked()
 {
-//    if(flag==0){
-//        open();
-//        flag=1;
-//    }
-//    else if (flag == 1){
-//        flag = 0;
-//        close();
-//    }
-    open();
+    if(flag==0){
+        open();
+        flag=1;
+    }
 }
 
 void LeapGui::on_upLeft_toggled(bool checked)
