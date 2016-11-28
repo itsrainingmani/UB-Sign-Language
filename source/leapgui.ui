@@ -57,6 +57,32 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QPushButton" name="upLeft">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>260</y>
+     <width>131</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#upLeft {
+background-color: transparent;
+border-image: url(:unp.png);
+background: none;
+border: none;
+background-repeat: none;
+}
+#upLeft:pressed
+{
+border-image: url(:pr.png);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

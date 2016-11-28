@@ -23,3 +23,6 @@ unix:!macx: LIBS += -L$$PWD/../lib/x64/ -lLeap
 
 INCLUDEPATH += $$PWD/../include
 DEPENDPATH += $$PWD/../include
+
+RESOURCES += \
+    buttons.qrc
