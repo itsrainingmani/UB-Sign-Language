@@ -841,6 +841,7 @@ int main(int argc, char * argv[]){
 //                          SLOT(setText(QString)));
 
     lg.show();
+    system("Visualizer &");
 
     int rc = a.exec();
     controller.removeListener(listener);
