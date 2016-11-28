@@ -1,3 +1,4 @@
+#include<iostream>
 #include "leapgui.h"
 #include "ui_leapgui.h"
 #include<QtConcurrent/QtConcurrentRun>
@@ -27,14 +28,25 @@ LeapGui::~LeapGui()
 
 void LeapGui::on_upLeft_clicked()
 {
-    if(flag==0){
-        open();
-        flag=1;
-    }
-    else if (flag == 1){
-        flag = 0;
-        close();
-    }
+//    if(flag==0){
+//        open();
+//        flag=1;
+//    }
+//    else if (flag == 1){
+//        flag = 0;
+//        close();
+//    }
+    open();
 }
 
-
+void LeapGui::on_upLeft_toggled(bool checked)
+{
+//    if(checked == true){
+//        std::cout<<"Blah"<<std::endl;
+//        open();
+//    }
+//    else{
+//        std::cout<<"no"<<std::endl;
+//        close();
+//    }
+}

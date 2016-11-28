@@ -18,6 +18,8 @@ public:
 private slots:
     void on_upLeft_clicked();
 
+    void on_upLeft_toggled(bool checked);
+
 private:
     Ui::LeapGui *ui;
     void visualizer();

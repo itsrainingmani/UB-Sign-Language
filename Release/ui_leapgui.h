@@ -55,6 +55,7 @@ public:
 "{\n"
 "border-image: url(:pr.png);\n"
 "}"));
+        upLeft->setCheckable(false);
 
         retranslateUi(LeapGui);
 
