@@ -6,20 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>398</height>
+    <width>480</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LeapGui</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <widget class="QLabel" name="charLabel">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>50</y>
-     <width>131</width>
-     <height>131</height>
+     <x>320</x>
+     <y>10</y>
+     <width>151</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="font">
@@ -44,10 +47,10 @@
   <widget class="QPushButton" name="upLeft">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>230</y>
-     <width>131</width>
-     <height>91</height>
+     <x>330</x>
+     <y>220</y>
+     <width>141</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -76,7 +79,7 @@ border-image: url(:pr.png);
      <x>10</x>
      <y>10</y>
      <width>301</width>
-     <height>241</height>
+     <height>271</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -90,9 +93,9 @@ border-image: url(:pr.png);
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>270</y>
+     <y>300</y>
      <width>301</width>
-     <height>111</height>
+     <height>81</height>
     </rect>
    </property>
    <property name="frameShape">

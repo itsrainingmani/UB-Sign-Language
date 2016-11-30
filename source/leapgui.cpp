@@ -4,14 +4,6 @@
 
 int flag=0;
 
-//void open(){
-//    system("Visualizer &");
-//}
-
-//void close(){
-//    system("pkill Visualizer");
-//}
-
 LeapGui::LeapGui(QWidget *parent) :
     QWidget(parent),
 

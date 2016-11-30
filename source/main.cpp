@@ -11,6 +11,7 @@
 #include <QImageReader>
 #include <QImage>
 #include <QDir>
+#include <algorithm>
 
 class SampleListener : public QObject, public Leap::Listener {
     QLabel *imglbl;
@@ -36,14 +37,7 @@ public:
     }
 };
 
-//QApplication a();
-//LeapGui lg;
-//QLabel *imglbl = lg.findChild<QLabel *>("imgLabel");
-//QLabel *chrlbl = lg.findChild<QLabel *>("charLabel");
-
-//QLabel *imglbl = new QLabel();
-//QLabel *chrlbl = new QLabel();
-
+//Global variables
 char finally;
 char test;
 bool hasGamePlayed = false;
@@ -55,6 +49,8 @@ QImage image;
 const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
 const std::string boneNames[] = {"Metacarpal", "Proximal", "Middle", "Distal"};
 const std::string stateNames[] = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
+const std::vector<char> alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+std::vector<char> gameAlphabet(24);
 
 void SampleListener::onInit(const Leap::Controller&) {
   std::cout << "Initialized" << std::endl;
@@ -766,10 +762,13 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             finger_number = finger_number + 1;
         }
 
+        //Initializes the game the first time
         if (firstTimeInit == true){
             srand(time(NULL));
-            int seed = rand() % 26;
-            test = seed + 65;
+//            int seed = rand() % 26;
+//            test = seed + 65;
+            int randIndex = rand() % gameAlphabet.size();
+            test = gameAlphabet[randIndex];
             QString gameLabelText = "Please Make a ";
             gameLabelText.append(test);
             imagePath.append(test);
@@ -781,10 +780,13 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             firstTimeInit = false;
         }
 
+        //Checks if game condition has been satisfied and picks a new character if so
         if (countingFrames <= 60 && hasGamePlayed == true){
             srand(time(NULL));
-            int seed = rand() % 26;
-            test = seed + 65;
+//            int seed = rand() % 26;
+//            test = seed + 65;
+            int randIndex = rand() % gameAlphabet.size();
+            test = gameAlphabet[randIndex];
             QString gameLabelText = "Please Make a ";
             gameLabelText.append(test);
             imagePath.append(test);
@@ -806,6 +808,7 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
         if (finally == test){
             hasGamePlayed = true;
             gamelbl->setText("Well done!\nGet ready for the next letter!");
+            gameAlphabet.erase(std::remove(gameAlphabet.begin(), gameAlphabet.end(), test), gameAlphabet.end());
         }
 //        std::cout<<countingFrames<<'\t'<<test<<std::endl;
         countingFrames++;
@@ -858,7 +861,9 @@ int main(int argc, char * argv[]){
     lg.show();
     gamelbl->setText("Would you like to play a game?\nWell, yes or no, we will play a game\n");
     imglbl->setScaledContents(true);
+    gameAlphabet = alphabet;
 
+    //Get current path and use that to get the path of the signs
     imagePath = QDir::currentPath();
     imagePath.chop(QDir::currentPath().length() - QDir::currentPath().lastIndexOf("/") -1);
     imagePath.append("signs/");
