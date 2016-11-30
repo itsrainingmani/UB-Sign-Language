@@ -808,6 +808,7 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
         if (finally == test){
             hasGamePlayed = true;
             gamelbl->setText("Well done!\nGet ready for the next letter!");
+            sleep(1);
             gameAlphabet.erase(std::remove(gameAlphabet.begin(), gameAlphabet.end(), test), gameAlphabet.end());
         }
 //        std::cout<<countingFrames<<'\t'<<test<<std::endl;
