@@ -7,10 +7,15 @@
 #include <cstring>
 #include <unistd.h>
 #include <cctype>
+#include <string>
+#include <QImageReader>
+#include <QImage>
+#include <QDir>
 
 class SampleListener : public QObject, public Leap::Listener {
-//    QLabel *imglbl;
+    QLabel *imglbl;
     QLabel *chrlbl;
+    QLabel *gamelbl;
 public:
     virtual void onInit(const Leap::Controller&);
     virtual void onConnect(const Leap::Controller& controller);
@@ -24,9 +29,10 @@ public:
     virtual void onServiceDisconnect(const Leap::Controller&);
 //    virtual void onImages(const Leap::Controller& controller);
 
-    void setLabels(QLabel* c){
-//        imglbl = i;
+    void setLabels(QLabel* c, QLabel* g, QLabel* i){
         chrlbl = c;
+        gamelbl = g;
+        imglbl = i;
     }
 };
 
@@ -37,6 +43,14 @@ public:
 
 //QLabel *imglbl = new QLabel();
 //QLabel *chrlbl = new QLabel();
+
+char finally;
+char test;
+bool hasGamePlayed = false;
+bool firstTimeInit = true;
+int countingFrames = 0;
+QString imagePath;
+QImage image;
 
 const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
 const std::string boneNames[] = {"Metacarpal", "Proximal", "Middle", "Distal"};
@@ -681,14 +695,6 @@ void SampleListener::onFrame(const Leap::Controller& controller) {
 //    QPixmap pxmap = QPixmap::fromImage(img);
 //    imglbl->setPixmap(pxmap);
 
-//Print out frame info, including time, number of hands, and the ID of the frame.
-//std::cout << "Leap::Frame id: " << frame.id()
-//    << ", timestamp: " << frame.timestamp()
-//    << ", hands: " << frame.hands().count()
-//    << ", extended fingers: " << frame.fingers().extended().count()
-//    << ", tools: " << frame.tools().count()
-//    << ", gestures: " << frame.gestures().count() << std::endl;
-
 
     Leap::HandList hands = frame.hands();
 
@@ -751,13 +757,6 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
                 Leap::Bone::Type boneType = static_cast<Leap::Bone::Type>(b);
                 Leap::Bone bone = finger.bone(boneType);
 
-/*
-std::cout << std::string(6, ' ') <<  boneNames[boneType]
-    << " bone, start: " << bone.prevJoint()
-    << ", end: " << bone.nextJoint()
-    << ", direction: " << bone.direction() << std::endl;
-*/
-
                 Leap::Vector temp_vector = bone.direction();
                 bone_information[finger_number][b][0] = temp_vector.x;
                 bone_information[finger_number][b][1] = temp_vector.y;
@@ -767,13 +766,49 @@ std::cout << std::string(6, ' ') <<  boneNames[boneType]
             finger_number = finger_number + 1;
         }
 
-    //int open_or_closed_check = openOrClosed(open_or_closed_vector);
-    //open_or_closed_vector = Leap::Vector::zero();
-    //printBoneInformation(bone_information);
+        if (firstTimeInit == true){
+            srand(time(NULL));
+            int seed = rand() % 26;
+            test = seed + 65;
+            QString gameLabelText = "Please Make a ";
+            gameLabelText.append(test);
+            imagePath.append(test);
+            imagePath.append(".JPG");
+            image.load(imagePath);
+            QPixmap pixmap = QPixmap::fromImage(image);
+            imglbl->setPixmap(pixmap);
+            gamelbl->setText(gameLabelText);
+            firstTimeInit = false;
+        }
 
-    char finally = toupper(game(bone_information));
-    chrlbl->setText(QString(finally));
-//    std::cout << std::endl << "The presented letter: " << finally << std::endl << std::endl;
+        if (countingFrames <= 60 && hasGamePlayed == true){
+            srand(time(NULL));
+            int seed = rand() % 26;
+            test = seed + 65;
+            QString gameLabelText = "Please Make a ";
+            gameLabelText.append(test);
+            imagePath.append(test);
+            imagePath.append(".JPG");
+            image.load(imagePath);
+            QPixmap pixmap = QPixmap::fromImage(image);
+            imglbl->setPixmap(pixmap);
+            gamelbl->setText(gameLabelText);
+            countingFrames = 0;
+            hasGamePlayed = false;
+        }
+        else if (countingFrames > 60 && hasGamePlayed == false){
+            gamelbl->setText("Having trouble?\nCheck the picture for help");
+            countingFrames = 0;
+        }
+
+        finally = toupper(whichLetter(bone_information));
+        chrlbl->setText(QString(finally));
+        if (finally == test){
+            hasGamePlayed = true;
+            gamelbl->setText("Well done!\nGet ready for the next letter!");
+        }
+//        std::cout<<countingFrames<<'\t'<<test<<std::endl;
+        countingFrames++;
     }
 
     //Delay a quarter of a second so the output is readable.
@@ -807,41 +842,27 @@ void SampleListener::onServiceDisconnect(const Leap::Controller&) {
   std::cout << "Service Disconnected" << std::endl;
 }
 
-char game(float bone_information[5][4][3]){
-        std::cout << "Would you like to play a game?" << std::endl;
-        std::cout << "Well, yes or no, we will play a game" << std::endl;
-        std::cout << "For now, please press the required CAPITAL key" << std::endl;
-        srand(time(NULL));
-
-        int seed = rand() % 26;
-        char test = seed + 65;
-        std::cout << "Please Make a "  << test << std::endl;
-        char input = whichLetter(bone_information);
-//        if(input == '\n'){
-//            input = getchar();
-//        }
-        if(test == input){
-            std::cout << "Yay, you did it" << std::endl;
-            return input;
-        }
-        else{
-            std::cout << "Better luck next time champ" << std::endl;
-            return input;
-        }
-}
-
 int main(int argc, char * argv[]){
     QApplication a(argc, argv);
     LeapGui lg;
-//    QLabel *imglbl = lg.findChild<QLabel *>("imgLabel");
+
     QLabel *chrlbl = lg.findChild<QLabel *>("charLabel");
+    QLabel *imglbl = lg.findChild<QLabel *>("imageLabel");
+    QLabel *gamelbl = lg.findChild<QLabel *>("gameLabel");
 
     SampleListener listener;
-    listener.setLabels(chrlbl);
+    listener.setLabels(chrlbl, gamelbl, imglbl);
     Leap::Controller controller;
     controller.addListener(listener);
 
     lg.show();
+    gamelbl->setText("Would you like to play a game?\nWell, yes or no, we will play a game\n");
+    imglbl->setScaledContents(true);
+
+    imagePath = QDir::currentPath();
+    imagePath.chop(QDir::currentPath().length() - QDir::currentPath().lastIndexOf("/") -1);
+    imagePath.append("signs/");
+//    imglbl->setText(imagePath);
 
     int rc = a.exec();
     controller.removeListener(listener);

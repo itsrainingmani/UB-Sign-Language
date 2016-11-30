@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>111</width>
-    <height>199</height>
+    <width>500</width>
+    <height>398</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QLabel" name="charLabel">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>91</width>
-     <height>91</height>
+     <x>340</x>
+     <y>50</y>
+     <width>131</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="font">
@@ -44,10 +44,10 @@
   <widget class="QPushButton" name="upLeft">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>120</y>
-     <width>91</width>
-     <height>51</height>
+     <x>340</x>
+     <y>230</y>
+     <width>131</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -68,6 +68,38 @@ border-image: url(:pr.png);
    </property>
    <property name="checkable">
     <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="imageLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>301</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="gameLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>270</y>
+     <width>301</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

@@ -944,19 +944,9 @@ leapgui.o: ../source/leapgui.cpp ../source/leapgui.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qrubberband.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.7/gcc_64/include/QtConcurrent/QtConcurrentRun \
-		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentrun.h \
-		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentcompilertest.h \
-		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrent_global.h \
-		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentrunbase.h \
-		../../../Qt/5.7/gcc_64/include/QtCore/qfuture.h \
-		../../../Qt/5.7/gcc_64/include/QtCore/qfutureinterface.h \
-		../../../Qt/5.7/gcc_64/include/QtCore/qrunnable.h \
-		../../../Qt/5.7/gcc_64/include/QtCore/qexception.h \
-		../../../Qt/5.7/gcc_64/include/QtCore/qresultstore.h \
-		../../../Qt/5.7/gcc_64/include/QtCore/qthreadpool.h \
-		../../../Qt/5.7/gcc_64/include/QtCore/qthread.h \
-		../../../Qt/5.7/gcc_64/include/QtConcurrent/qtconcurrentstoredfunctioncall.h
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o leapgui.o ../source/leapgui.cpp
 
 qrc_buttons.o: qrc_buttons.cpp 

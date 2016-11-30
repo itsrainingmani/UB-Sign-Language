@@ -25,15 +25,17 @@ class Ui_LeapGui
 public:
     QLabel *charLabel;
     QPushButton *upLeft;
+    QLabel *imageLabel;
+    QLabel *gameLabel;
 
     void setupUi(QWidget *LeapGui)
     {
         if (LeapGui->objectName().isEmpty())
             LeapGui->setObjectName(QStringLiteral("LeapGui"));
-        LeapGui->resize(111, 199);
+        LeapGui->resize(500, 398);
         charLabel = new QLabel(LeapGui);
         charLabel->setObjectName(QStringLiteral("charLabel"));
-        charLabel->setGeometry(QRect(10, 10, 91, 91));
+        charLabel->setGeometry(QRect(340, 50, 131, 131));
         QFont font;
         font.setFamily(QStringLiteral("Liberation Mono"));
         font.setPointSize(60);
@@ -43,7 +45,7 @@ public:
         charLabel->setAlignment(Qt::AlignCenter);
         upLeft = new QPushButton(LeapGui);
         upLeft->setObjectName(QStringLiteral("upLeft"));
-        upLeft->setGeometry(QRect(10, 120, 91, 51));
+        upLeft->setGeometry(QRect(340, 230, 131, 91));
         upLeft->setStyleSheet(QLatin1String("#upLeft {\n"
 "background-color: transparent;\n"
 "border-image: url(:unp.png);\n"
@@ -56,6 +58,14 @@ public:
 "border-image: url(:pr.png);\n"
 "}"));
         upLeft->setCheckable(false);
+        imageLabel = new QLabel(LeapGui);
+        imageLabel->setObjectName(QStringLiteral("imageLabel"));
+        imageLabel->setGeometry(QRect(10, 10, 301, 241));
+        imageLabel->setFrameShape(QFrame::Box);
+        gameLabel = new QLabel(LeapGui);
+        gameLabel->setObjectName(QStringLiteral("gameLabel"));
+        gameLabel->setGeometry(QRect(10, 270, 301, 111));
+        gameLabel->setFrameShape(QFrame::Box);
 
         retranslateUi(LeapGui);
 
@@ -67,6 +77,8 @@ public:
         LeapGui->setWindowTitle(QApplication::translate("LeapGui", "LeapGui", 0));
         charLabel->setText(QString());
         upLeft->setText(QString());
+        imageLabel->setText(QString());
+        gameLabel->setText(QString());
     } // retranslateUi
 
 };
