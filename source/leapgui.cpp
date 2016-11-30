@@ -1,7 +1,6 @@
 #include<iostream>
 #include "leapgui.h"
 #include "ui_leapgui.h"
-#include<QtConcurrent/QtConcurrentRun>
 
 int flag=0;
 
