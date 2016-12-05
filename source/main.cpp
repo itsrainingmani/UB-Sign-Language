@@ -813,6 +813,8 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             sleep(1);
             gameAlphabet.erase(std::remove(gameAlphabet.begin(), gameAlphabet.end(), test), gameAlphabet.end());
             imagePath.chop(5);
+//            imglbl->setText(imagePath);
+//            std::cout<<imagePath.toStdString()<<std::endl;
         }
 //        std::cout<<countingFrames<<'\t'<<test<<std::endl;
         countingFrames++;
