@@ -6,20 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>121</width>
-    <height>253</height>
+    <width>480</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LeapGui</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <widget class="QLabel" name="charLabel">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>320</x>
      <y>10</y>
-     <width>91</width>
-     <height>91</height>
+     <width>151</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="font">
@@ -39,6 +42,67 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="upLeft">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>220</y>
+     <width>141</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#upLeft {
+background-color: transparent;
+border-image: url(:unp.png);
+background: none;
+border: none;
+background-repeat: none;
+}
+#upLeft:pressed
+{
+border-image: url(:pr.png);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="imageLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>301</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="gameLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>300</y>
+     <width>301</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
