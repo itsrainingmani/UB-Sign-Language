@@ -21,8 +21,8 @@ It would enable such people to communicate effectively with those that don't.
 ### Getting started
 In order to get our system setup on your local machine, please use the following Git command to clone the repository onto your system - 
 
-`$ git clone git@github.com:tsmanikandan/UB-Sign-Language.git
-`
+`$ git clone git@github.com:tsmanikandan/UB-Sign-Language.git`
+
 Alternatively, you can download the repository as a .zip file and extract the files. The **master** branch contains deployment ready code.
 Please check the requirements given below and update your system accordingly.
 
