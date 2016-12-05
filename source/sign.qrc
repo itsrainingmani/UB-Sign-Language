@@ -1,0 +1,30 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+    <file>signs/A.JPG</file>
+    <file>signs/B.JPG</file>
+    <file>signs/C.JPG</file>
+    <file>signs/D.JPG</file>
+    <file>signs/E.JPG</file>
+    <file>signs/F.JPG</file>
+    <file>signs/G.JPG</file>
+    <file>signs/H.JPG</file>
+    <file>signs/I.JPG</file>
+    <file>signs/J.JPG</file>
+    <file>signs/K.JPG</file>
+    <file>signs/L.JPG</file>
+    <file>signs/M.JPG</file>
+    <file>signs/N.JPG</file>
+    <file>signs/O.JPG</file>
+    <file>signs/P.JPG</file>
+    <file>signs/Q.JPG</file>
+    <file>signs/R.JPG</file>
+    <file>signs/S.JPG</file>
+    <file>signs/T.JPG</file>
+    <file>signs/U.JPG</file>
+    <file>signs/V.JPG</file>
+    <file>signs/W.JPG</file>
+    <file>signs/X.JPG</file>
+    <file>signs/Y.JPG</file>
+    <file>signs/Z.JPG</file>
+</qresource>
+</RCC>

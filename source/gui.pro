@@ -25,4 +25,5 @@ INCLUDEPATH += $$PWD/../include
 DEPENDPATH += $$PWD/../include
 
 RESOURCES += \
-    buttons.qrc
+    buttons.qrc \
+    sign.qrc

@@ -43,7 +43,7 @@ char test;
 bool hasGamePlayed = false;
 bool firstTimeInit = true;
 int countingFrames = 0;
-QString imagePath;
+QString imagePath = ":/signs/";
 QImage image;
 
 const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
@@ -773,7 +773,6 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             gameLabelText.append(test);
             imagePath.append(test);
             imagePath.append(".JPG");
-            imglbl->setText(imagePath);
             image.load(imagePath);
             QPixmap pixmap = QPixmap::fromImage(image);
             imglbl->setPixmap(pixmap);
@@ -792,7 +791,6 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             gameLabelText.append(test);
             imagePath.append(test);
             imagePath.append(".JPG");
-
             image.load(imagePath);
             QPixmap pixmap = QPixmap::fromImage(image);
             imglbl->setPixmap(pixmap);
@@ -870,10 +868,11 @@ int main(int argc, char * argv[]){
     gameAlphabet = alphabet;
 
     //Get current path and use that to get the path of the signs
-    imagePath = QDir::currentPath();
-    imagePath.chop(QDir::currentPath().length() - QDir::currentPath().lastIndexOf("/") -1);
-    imagePath.append("signs/");
+//    imagePath = QDir::currentPath();
+//    imagePath.chop(QDir::currentPath().length() - QDir::currentPath().lastIndexOf("/") -1);
+//    imagePath.append("signs/");
 //    imglbl->setText(imagePath);
+//    imagePath =
 
     int rc = a.exec();
     controller.removeListener(listener);
