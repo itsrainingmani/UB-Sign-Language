@@ -1,5 +1,5 @@
 <!DOCTYPE RCC><RCC version="1.0">
-<qresource prefix="/">
+<qresource>
     <file>signs/A.JPG</file>
     <file>signs/B.JPG</file>
     <file>signs/C.JPG</file>

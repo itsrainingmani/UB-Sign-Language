@@ -43,7 +43,7 @@ char test;
 bool hasGamePlayed = false;
 bool firstTimeInit = true;
 int countingFrames = 0;
-QString imagePath = ":/signs/";
+//QString imagePath = ":/signs/";
 QImage image;
 
 const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
@@ -771,9 +771,9 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             test = gameAlphabet[randIndex];
             QString gameLabelText = "Please Make a ";
             gameLabelText.append(test);
-            imagePath.append(test);
-            imagePath.append(".JPG");
-            image.load(imagePath);
+//            imagePath.append(test);
+//            imagePath.append(".JPG");
+            image.load(":/signs/" + QString(test) + QString(".JPG"));
             QPixmap pixmap = QPixmap::fromImage(image);
             imglbl->setPixmap(pixmap);
             gamelbl->setText(gameLabelText);
@@ -789,9 +789,9 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             test = gameAlphabet[randIndex];
             QString gameLabelText = "Please Make a ";
             gameLabelText.append(test);
-            imagePath.append(test);
-            imagePath.append(".JPG");
-            image.load(imagePath);
+//            imagePath.append(test);
+//            imagePath.append(".JPG");
+            image.load(":/signs/" + QString(test) + QString(".JPG"));
             QPixmap pixmap = QPixmap::fromImage(image);
             imglbl->setPixmap(pixmap);
             gamelbl->setText(gameLabelText);
@@ -810,7 +810,7 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             gamelbl->setText("Well done!\nGet ready for the next letter!");
             sleep(1);
             gameAlphabet.erase(std::remove(gameAlphabet.begin(), gameAlphabet.end(), test), gameAlphabet.end());
-            imagePath.chop(5);
+//            imagePath.chop(5);
 //            imglbl->setText(imagePath);
 //            std::cout<<imagePath.toStdString()<<std::endl;
         }
