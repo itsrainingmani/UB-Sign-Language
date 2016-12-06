@@ -50,7 +50,7 @@ QImage image;
 const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
 const std::string boneNames[] = {"Metacarpal", "Proximal", "Middle", "Distal"};
 const std::string stateNames[] = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
-const std::vector<char> alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N', 'M', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+const std::vector<char> alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 std::vector<char> gameAlphabet(24);
 
 void SampleListener::onInit(const Leap::Controller&) {
@@ -782,7 +782,7 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
         }
 
         //Checks if game condition has been satisfied and picks a new character if so
-        if (countingFrames <= 25 && hasGamePlayed == true){
+        if (countingFrames <= 60 && hasGamePlayed == true){
             srand(time(NULL));
 //            int seed = rand() % 26;
 //            test = seed + 65;
@@ -799,10 +799,10 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             countingFrames = 0;
             hasGamePlayed = false;
         }
-        else if (countingFrames > 25 && hasGamePlayed == false){
+        else if (countingFrames > 60 && hasGamePlayed == false){
 //            gamelbl->setText("Having trouble?\nCheck the picture for help");
             countingFrames = 0;
-//            gamelbl->setText("Better luck next time");
+            gamelbl->setText("Better luck next time");
             finally = test;
             skipLetter = true;
         }
@@ -821,8 +821,12 @@ std::cout << "Pitch: " << angles[0] << " | Roll: " << angles[1]
             else
                 gamelbl->setText("Better luck next time");
             sleep(1);
-
+            gamelbl->setText("Well done!\nGet ready for the next letter!");
+            gameAlphabet.erase(std::remove(gameAlphabet.begin(), gameAlphabet.end(), test), gameAlphabet.end());
             skipLetter = false;
+            if (gameAlphabet.size() == 1){
+                gameAlphabet = alphabet;
+            }
 //            imagePath.chop(5);
 //            imglbl->setText(imagePath);
 //            std::cout<<imagePath.toStdString()<<std::endl;
